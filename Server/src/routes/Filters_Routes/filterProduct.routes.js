@@ -1,5 +1,5 @@
 const express = require("express");
-const filter = require("../../controllers/Filtros/filter");
+const filter = require("../../controllers/Filters/filter");
 
 const router = express.Router();
 
