@@ -14,7 +14,7 @@ const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ru
 const postProducts = require("./routes/Products_Routes/postProduct.routes"); // Ruta para crear una nueva prenda
 const deleteProducts = require("./routes/Products_Routes/deleteProduct.routes"); // Ruta para eliminar una prenda
 const updateProducts = require("./routes/Products_Routes/updateProduct.routes"); // Ruta para actualizar información de prendas
-const filter = require("./routes/Filters_Routes/filter.router");
+const filter = require("./routes/Filters_Routes/filterProduct.routes");
 
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
