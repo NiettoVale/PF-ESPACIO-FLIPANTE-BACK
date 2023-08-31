@@ -1,21 +1,59 @@
-const { Product } = require("../../DataBase");
+const { Product, Size } = require("../../DataBase");
 
-const getPrendas = async (_req, res) => {
+const getProducts = async (_req, res) => {
   try {
-    const prendas = await Product.findAll({
+    const products = await Product.findAll({
       where: {
-        delete: false, // Filtra solo las prendas que no están marcadas como eliminadas
+        delete: false,
       },
+      include: [
+        {
+          model: Size,
+          as: "Sizes",
+          attributes: ["name"],
+        },
+      ],
     });
 
-    if (prendas.length > 0) {
-      return res.status(200).json(prendas);
+    const formattedProducts = products.map((product) => {
+      const totalStock = product.stock;
+      const sizesWithStock = product.Sizes.map((size) => size.name);
+
+      const totalSizes = sizesWithStock.length;
+
+      const stockPerSize = Math.floor(totalStock / totalSizes);
+      const remainder = totalStock % totalSizes;
+
+      const formattedSizes = Object.fromEntries(
+        sizesWithStock.map((size, index) => [
+          size,
+          stockPerSize + (index < remainder ? 1 : 0),
+        ])
+      );
+
+      return {
+        id: product.id,
+        name: product.name,
+        gender: product.gender,
+        category: product.category,
+        mainMaterial: product.mainMaterial,
+        description: product.description,
+        images: product.images,
+        price: product.price,
+        delete: product.delete,
+        stock: product.stock,
+        size: formattedSizes,
+      };
+    });
+
+    if (formattedProducts.length > 0) {
+      return res.status(200).json(formattedProducts);
     }
 
-    return res.status(200).json({ message: "No hay prendas almacenadas." });
+    return res.status(200).json({ message: "No hay productos almacenados." });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = getPrendas;
+module.exports = getProducts;
