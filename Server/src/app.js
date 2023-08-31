@@ -16,6 +16,7 @@ const deleteProducts = require("./routes/Products_Routes/deleteProduct.routes");
 const updateProducts = require("./routes/Products_Routes/updateProduct.routes"); // Ruta para actualizar información de prendas
 const postSize = require("./routes/Products_Routes/Size/postSize.routes");
 const filter = require("./routes/Filters_Routes/filterProduct.routes");
+const detail = require("./routes/Products_Routes/getProduct.ById.routes");
 
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
@@ -36,7 +37,7 @@ server.use("/", updateProducts); // Ruta para actualizar información de prendas
 
 // Rutas para el talle:
 server.use("/", postSize);
-
+server.use("/", detail);
 // Ruta para los filtros
 server.use("/", filter);
 
