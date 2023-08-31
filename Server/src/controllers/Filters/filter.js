@@ -2,9 +2,10 @@ const { Product } = require("../../DataBase");
 
 const filter = async (req, res) => {
   try {
-    const { name, size, price } = req.query;
+    const { name, size, price, gender, category } = req.query;
     const products = await Product.findAll();
 
+    //Filtro por name
     if (name) {
       const nameFiltered = products.filter((product) =>
         product.name.toLowerCase().includes(name.toLowerCase())
@@ -17,7 +18,7 @@ const filter = async (req, res) => {
           .json({ message: "No hay productos con ese Nombre" });
       }
     }
-
+    //Filtro price
     if (price) {
       const numericPrice = parseFloat(price);
       const priceFiltered = products.filter(
@@ -31,7 +32,7 @@ const filter = async (req, res) => {
           .json({ message: "No hay productos con ese Precio" });
       }
     }
-
+    //Filtro por size (Hay que modificarlo)
     if (size && Array.isArray(size)) {
       const sizeFiltered = products.filter((product) => {
         product.size.some((productSize) => size.includes(productSize));
@@ -42,6 +43,34 @@ const filter = async (req, res) => {
         return res
           .status(404)
           .json({ message: "No hay productos con ese Talle" });
+      }
+    }
+
+    //Filtro por gender
+    if (gender) {
+      const genderFiltered = products.filter((product) =>
+        product.gender.toLowerCase().includes(gender.toLowerCase())
+      );
+      if (genderFiltered.length > 0) {
+        return res.status(200).json({ genderFiltered });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "No hay productos con ese Genero" });
+      }
+    }
+
+    //Filtro por category
+    if (category) {
+      const categoryFiltered = products.filter((product) =>
+        product.category.toLowerCase().includes(category.toLowerCase())
+      );
+      if (categoryFiltered.length > 0) {
+        return res.status(200).json({ categoryFiltered });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "No hay productos en esa Categoria" });
       }
     }
   } catch (error) {
