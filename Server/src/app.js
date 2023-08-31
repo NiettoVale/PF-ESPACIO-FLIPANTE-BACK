@@ -17,8 +17,13 @@ const updateProducts = require("./routes/Products_Routes/updateProduct.routes");
 const postSize = require("./routes/Products_Routes/Size/postSize.routes");
 const getSize = require("./routes/Products_Routes/Size/getSize.routes");
 
+
+//
+const getGender = require("./routes/Products_Routes/getGender.routes");
+
 const filter = require("./routes/Filters_Routes/filterProduct.routes");
 const detail = require("./routes/Products_Routes/getProductById.routes");
+const getCategory = require("./routes/Products_Routes/getCategory.routes");
 
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
@@ -41,6 +46,13 @@ server.use("/", updateProducts); // Ruta para actualizar información de prendas
 server.use("/", postSize);
 server.use("/", getSize);
 server.use("/", detail);
+
+
+///
+
+server.use("/", getGender);
+server.use("/", getCategory);
+
 
 // Ruta para los filtros
 server.use("/", filter);
