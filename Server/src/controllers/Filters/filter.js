@@ -1,4 +1,5 @@
 const { Product } = require("../../DataBase");
+const filterSizes = require("../Filters/sizeFilter");
 
 const filter = async (req, res) => {
   try {
@@ -33,10 +34,8 @@ const filter = async (req, res) => {
       }
     }
     //Filtro por size (Hay que modificarlo)
-    if (size && Array.isArray(size)) {
-      const sizeFiltered = products.filter((product) => {
-        product.size.some((productSize) => size.includes(productSize));
-      });
+    if (size) {
+      const sizeFiltered = await filterSizes(size);
       if (sizeFiltered.length > 0) {
         return res.status(200).json({ sizeFiltered });
       } else {
@@ -45,7 +44,6 @@ const filter = async (req, res) => {
           .json({ message: "No hay productos con ese Talle" });
       }
     }
-
     //Filtro por gender
     if (gender) {
       const genderFiltered = products.filter((product) =>
