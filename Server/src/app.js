@@ -15,6 +15,8 @@ const postProducts = require("./routes/Products_Routes/postProduct.routes"); // 
 const deleteProducts = require("./routes/Products_Routes/deleteProduct.routes"); // Ruta para eliminar una prenda
 const updateProducts = require("./routes/Products_Routes/updateProduct.routes"); // Ruta para actualizar información de prendas
 const postSize = require("./routes/Products_Routes/Size/postSize.routes");
+const getSize = require("./routes/Products_Routes/Size/getSize.routes");
+
 const filter = require("./routes/Filters_Routes/filterProduct.routes");
 const detail = require("./routes/Products_Routes/getProductById.routes");
 
@@ -37,7 +39,9 @@ server.use("/", updateProducts); // Ruta para actualizar información de prendas
 
 // Rutas para el talle:
 server.use("/", postSize);
+server.use("/", getSize);
 server.use("/", detail);
+
 // Ruta para los filtros
 server.use("/", filter);
 
