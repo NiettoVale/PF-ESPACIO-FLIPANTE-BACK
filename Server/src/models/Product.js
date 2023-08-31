@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  const Product = sequelize.define(
+  sequelize.define(
     "Product",
     {
       id: {
@@ -9,49 +9,55 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
+
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
+
       gender: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
+
       category: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
+
       mainMaterial: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      price: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
+
       description: {
         type: DataTypes.TEXT,
+        allowNull: true,
+        defaultValue: null,
       },
+
       images: {
         type: DataTypes.JSON,
-        allowNull: false,
+        allowNull: true,
       },
+
+      price: {
+        type: DataTypes.FLOAT,
+        allowNull: true,
+      },
+
+      stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+
       delete: {
-        // Agrega este campo
         type: DataTypes.BOOLEAN,
-        defaultValue: false, // Por defecto, no está eliminado
+        allowNull: false,
+        defaultValue: false,
       },
     },
     { timestamps: false }
   );
-
-  // Una Product puede tener múltiples tallas.
-  Product.associate = (models) => {
-    // Relación con Size a través de StockItem
-    Product.belongsToMany(models.Size, { through: "StockItem" });
-
-    // Relación con Stock
-    Product.hasMany(models.Stock);
-  };
-  return Product;
 };

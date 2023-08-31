@@ -1,18 +1,16 @@
-// models/StockItem.js
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  const StockItem = sequelize.define(
-    "StockItem",
+  sequelize.define(
+    "ProductItem",
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
+      // Puedes agregar más atributos según tus necesidades
     },
     { timestamps: false }
   );
-
-  return StockItem;
 };

@@ -14,8 +14,14 @@ const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ru
 const postProducts = require("./routes/Products_Routes/postProduct.routes"); // Ruta para crear una nueva prenda
 const deleteProducts = require("./routes/Products_Routes/deleteProduct.routes"); // Ruta para eliminar una prenda
 const updateProducts = require("./routes/Products_Routes/updateProduct.routes"); // Ruta para actualizar información de prendas
+<<<<<<< HEAD
+const postSize = require("./routes/Products_Routes/Size/postSize.routes");
+const filter = require("./routes/Filters_Routes/filterProduct.routes");
+const detail = require("./routes/Products_Routes/getProduct.ById.routes");
+=======
 const filter = require("./routes/Filters_Routes/filter.router");
 const detail = require("./routes/Products_Routes/getProductById.routes");
+>>>>>>> main
 
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
@@ -33,6 +39,14 @@ server.use("/", getProducts); // Ruta para obtener información de prendas
 server.use("/", postProducts); // Ruta para crear una nueva prenda
 server.use("/", deleteProducts); // Ruta para eliminar una prenda
 server.use("/", updateProducts); // Ruta para actualizar información de prendas
+<<<<<<< HEAD
+
+// Rutas para el talle:
+server.use("/", postSize);
+server.use("/", detail);
+// Ruta para los filtros
+=======
+>>>>>>> main
 server.use("/", filter);
 server.use("/", detail);
 
