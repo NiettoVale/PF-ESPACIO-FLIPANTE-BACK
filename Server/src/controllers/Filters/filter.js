@@ -4,7 +4,6 @@ const filter = async (req, res) => {
   try {
     const { name, size, price } = req.query;
     const products = await Product.findAll();
-<<<<<<< HEAD
 
     if (name) {
       const nameFiltered = products.filter((product) =>
@@ -44,23 +43,6 @@ const filter = async (req, res) => {
           .status(404)
           .json({ message: "No hay productos con ese Talle" });
       }
-=======
-    if (name) {
-      const namefiltered = products.filter((product) => product.name === name);
-      return res.status(200).json({ namefiltered });
-    }
-
-    if (price) {
-      const pricefiltered = products.filter(
-        (product) => product.price === price
-      );
-      return res.status(200).json({ pricefiltered });
-    }
-
-    if (size) {
-      const sizefiltered = products.filter((product) => product.size === size);
-      return res.status(200).json({ sizefiltered });
->>>>>>> main
     }
   } catch (error) {
     return res.status(500).json({ error: error.message });
