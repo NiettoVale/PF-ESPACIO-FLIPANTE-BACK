@@ -14,6 +14,7 @@ const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ru
 const postProducts = require("./routes/Products_Routes/postProduct.routes"); // Ruta para crear una nueva prenda
 const deleteProducts = require("./routes/Products_Routes/deleteProduct.routes"); // Ruta para eliminar una prenda
 const updateProducts = require("./routes/Products_Routes/updateProduct.routes"); // Ruta para actualizar información de prendas
+const postSize = require("./routes/Products_Routes/Size/postSize.routes");
 const filter = require("./routes/Filters_Routes/filterProduct.routes");
 
 // Middlewares
@@ -33,6 +34,10 @@ server.use("/", postProducts); // Ruta para crear una nueva prenda
 server.use("/", deleteProducts); // Ruta para eliminar una prenda
 server.use("/", updateProducts); // Ruta para actualizar información de prendas
 
+// Rutas para el talle:
+server.use("/", postSize);
+
+// Ruta para los filtros
 server.use("/", filter);
 
 module.exports = server; // Exportar el servidor configurado

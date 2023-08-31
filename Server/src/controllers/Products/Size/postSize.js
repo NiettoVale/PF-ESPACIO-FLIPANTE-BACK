@@ -1,5 +1,5 @@
 const { Size } = require("../../../DataBase");
-const sizesData = require("./arraySizes"); // Importa el arreglo de tallas
+const sizesData = require("./arraySize");
 
 const postSizes = async (req, res) => {
   try {

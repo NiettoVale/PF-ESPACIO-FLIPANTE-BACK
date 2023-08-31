@@ -1,34 +1,76 @@
-const { Product } = require("../../DataBase");
+const { Product, Size } = require("../../DataBase");
 const products = require("./arrayProducts");
 
-const postProducts = async (req, res) => {
+function getRandomQuantity(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const postProduct = async (req, res) => {
   try {
-    const count = await Product.count();
+    const { name, gender, category, mainMaterial, images, price, description } =
+      req.body;
 
-    if (count === 0) {
+    const productCount = await Product.count();
+
+    if (productCount === 0) {
       await Product.bulkCreate(products);
-      return res.status(202).json({ message: "Productos agregados con éxito" });
+
+      const sizes = await Size.findAll();
+
+      if (sizes && sizes.length > 0) {
+        const allProducts = await Product.findAll();
+        await Promise.all(
+          allProducts.map(async (product) => {
+            // Agregar stock directamente al producto
+            await product.update({
+              stock: getRandomQuantity(50, 500), // Número aleatorio entre 1 y 100
+            });
+
+            await product.addSizes(sizes);
+          })
+        );
+      } else {
+        return res
+          .status(500)
+          .json({ message: "No se encontraron tallas en la base de datos." });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "Producto(s) cargado(s) exitosamente." });
+    } else {
+      const newProduct = await Product.create({
+        name,
+        gender,
+        category,
+        mainMaterial,
+        images,
+        price,
+        description,
+      });
+
+      const sizes = await Size.findAll();
+
+      if (sizes && sizes.length > 0) {
+        // Agregar stock directamente al producto
+        await newProduct.update({
+          stock: getRandomQuantity(1, 100), // Número aleatorio entre 1 y 100
+        });
+
+        await newProduct.addSizes(sizes);
+      } else {
+        return res
+          .status(500)
+          .json({ message: "No se encontraron tallas en la base de datos." });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "Producto cargado exitosamente." });
     }
-
-    const { name, gender, category, mainMaterial, images, price } = req.body;
-
-    if (!name || !gender || !category || !mainMaterial || !images || !price) {
-      return res.status(400).json({ error: "Faltan datos en la solicitud" });
-    }
-
-    await Product.create({
-      name,
-      gender,
-      category,
-      mainMaterial,
-      images,
-      price,
-    });
-
-    return res.status(200).json({ message: "Producto creada con éxito." });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    throw new Error(error.message);
   }
 };
 
-module.exports = postProducts;
+module.exports = postProduct;
