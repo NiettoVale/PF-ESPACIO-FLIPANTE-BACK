@@ -85,15 +85,3 @@ const filter = async (req, res) => {
 };
 
 module.exports = filter;
-
-// const { Product, Size } = require("../../DataBase");
-
-// const filter = async (req, res) => {
-//   try {
-//     const { name, size, price, gender, category } = req.body;
-//   } catch (error) {
-//     return res.status(500).json({ error: error.message });
-//   }
-// };
-
-// module.exports = filter;
