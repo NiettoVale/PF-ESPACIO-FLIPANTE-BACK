@@ -1,27 +1,41 @@
 const { Product, Size } = require("../../DataBase");
-const filterSizes = require("../Filters/sizeFilter");
 
 const filter = async (req, res) => {
   try {
-    console.log(req.body);
     const { name, size, price, gender, category } = req.body;
     const products = await Product.findAll({
+      where: {
+        delete: false,
+      },
       include: [
         {
-          model: Size, // Nombre del modelo relacionado
-          as: "sizes", // Alias que has definido para la relación
-          attributes: ["name"], // Atributos que deseas seleccionar del modelo relacionado
+          model: Size,
+          as: "Sizes",
+          attributes: ["name"],
         },
       ],
     });
+
     let filteredProducts = [...products];
-    //Filtro por name
+
+    // Filtro por name
     if (name) {
       filteredProducts = filteredProducts.filter((product) =>
         product.name.toLowerCase().includes(name.toLowerCase())
       );
     }
-    //Filtro price
+
+    // Filtro por size
+    if (size) {
+      filteredProducts = filteredProducts.filter((product) => {
+        const sizes = product.Sizes.map((sizeObj) =>
+          sizeObj.name.toLowerCase()
+        );
+        return sizes.includes(size.toLowerCase());
+      });
+    }
+
+    // Filtro por price
     if (price) {
       const numericPrice = parseFloat(price);
       filteredProducts = filteredProducts.filter(
@@ -29,31 +43,36 @@ const filter = async (req, res) => {
       );
     }
 
-    //Filtro por size
-    if (size) {
-      //const sizeFiltered = await filterSizes(size.toUpperCase());
-      filteredProducts = filteredProducts.filter((product) =>
-        product.includes(product.size)
-      );
-    }
-
-    //Filtro por gender
+    // Filtro por gender
     if (gender) {
       filteredProducts = filteredProducts.filter((product) =>
         product.gender.toLowerCase().includes(gender.toLowerCase())
       );
     }
 
-    //Filtro por category
+    // Filtro por category
     if (category) {
       filteredProducts = filteredProducts.filter((product) =>
         product.category.toLowerCase().includes(category.toLowerCase())
       );
     }
 
-    //Verifico que tenga algo adentro
+    // Verifico que tenga algo adentro
     if (filteredProducts.length > 0) {
-      return res.status(200).json(filteredProducts);
+      const productsWithSizeNames = filteredProducts.map((product) => ({
+        id: product.id,
+        name: product.name,
+        gender: product.gender,
+        category: product.category,
+        mainMaterial: product.mainMaterial,
+        description: product.description,
+        images: product.images,
+        price: product.price,
+        stock: product.stock,
+        delete: product.delete,
+        Sizes: product.Sizes.map((size) => size.name), // Mapea los nombres de los tamaños
+      }));
+      return res.status(200).json(productsWithSizeNames);
     } else {
       return res.status(404).json({
         message:
@@ -66,3 +85,15 @@ const filter = async (req, res) => {
 };
 
 module.exports = filter;
+
+// const { Product, Size } = require("../../DataBase");
+
+// const filter = async (req, res) => {
+//   try {
+//     const { name, size, price, gender, category } = req.body;
+//   } catch (error) {
+//     return res.status(500).json({ error: error.message });
+//   }
+// };
+
+// module.exports = filter;
