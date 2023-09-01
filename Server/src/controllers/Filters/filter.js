@@ -12,7 +12,7 @@ const filter = async (req, res) => {
         product.name.toLowerCase().includes(name.toLowerCase())
       );
       if (nameFiltered.length > 0) {
-        return res.status(200).json({ nameFiltered });
+        return res.status(200).json(nameFiltered);
       } else {
         return res
           .status(404)
@@ -26,17 +26,19 @@ const filter = async (req, res) => {
         (product) => parseFloat(product.price) === numericPrice
       );
       if (priceFiltered.length > 0) {
-        return res.status(200).json({ priceFiltered });
+        return res.status(200).json(priceFiltered);
       } else {
         return res
           .status(404)
           .json({ message: "No hay productos con ese Precio" });
       }
     }
+
     //Filtro por size (Hay que modificarlo)
     if (size) {
-      const sizeFiltered = await filterSizes(size);
+      const sizeFiltered = await filterSizes(size.toUpperCase());
       if (sizeFiltered.length > 0) {
+        console.log(sizeFiltered.length);
         return res.status(200).json({ sizeFiltered });
       } else {
         return res
@@ -44,6 +46,7 @@ const filter = async (req, res) => {
           .json({ message: "No hay productos con ese Talle" });
       }
     }
+
     //Filtro por gender
     if (gender) {
       const genderFiltered = products.filter((product) =>

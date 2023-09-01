@@ -8,15 +8,13 @@ const getCategory = async (_req, res) => {
       attributes: ["category"], // Especifica las columnas que deseas seleccionar
     });
 
-   
-
-   if (categories.length > 0) {
-    // El resultado será un array de objetos con la propiedad 'gender'
-    const categoriesNames = categories.map((category) => category.category);
-    const categorySet = new Set(categoriesNames);
-    const arrayCategories = [...categorySet];  // Corrección aquí
-    return res.status(200).json(arrayCategories);
-  }
+    if (categories.length > 0) {
+      // El resultado será un array de objetos con la propiedad 'gender'
+      const categoriesNames = categories.map((category) => category.category);
+      const categorySet = new Set(categoriesNames);
+      const arrayCategories = [...categorySet]; // Corrección aquí
+      return res.status(200).json(arrayCategories);
+    }
 
     return res.status(200).json({ message: "No hay categorias agregados" });
   } catch (error) {
