@@ -70,7 +70,7 @@ const filter = async (req, res) => {
         price: product.price,
         stock: product.stock,
         delete: product.delete,
-        Sizes: product.Sizes.map((size) => size.name), // Mapea los nombres de los tamaños
+        sizes: product.Sizes.map((size) => size.name), // Mapea los nombres de los tamaños
       }));
       return res.status(200).json(productsWithSizeNames);
     } else {
