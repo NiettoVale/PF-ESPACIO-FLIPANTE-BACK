@@ -1,10 +1,19 @@
-const { Product } = require("../../DataBase");
+const { Product, Size } = require("../../DataBase");
 const filterSizes = require("../Filters/sizeFilter");
 
 const filter = async (req, res) => {
   try {
+    console.log(req.body);
     const { name, size, price, gender, category } = req.body;
-    const products = await Product.findAll();
+    const products = await Product.findAll({
+      include: [
+        {
+          model: Size, // Nombre del modelo relacionado
+          as: "sizes", // Alias que has definido para la relación
+          attributes: ["name"], // Atributos que deseas seleccionar del modelo relacionado
+        },
+      ],
+    });
     let filteredProducts = [...products];
     //Filtro por name
     if (name) {
@@ -22,9 +31,9 @@ const filter = async (req, res) => {
 
     //Filtro por size
     if (size) {
-      const sizeFiltered = await filterSizes(size.toUpperCase());
+      //const sizeFiltered = await filterSizes(size.toUpperCase());
       filteredProducts = filteredProducts.filter((product) =>
-        sizeFiltered.includes(product.size)
+        product.includes(product.size)
       );
     }
 
