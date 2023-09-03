@@ -52,6 +52,9 @@ const filter = async (req, res) => {
 
     // Filtro por category
     if (category) {
+      if (category.toLowerCase() === "todos") {
+        filteredProducts = products;
+      }
       filteredProducts = filteredProducts.filter((product) =>
         product.category.toLowerCase().includes(category.toLowerCase())
       );
@@ -76,7 +79,7 @@ const filter = async (req, res) => {
     } else {
       return res.status(404).json({
         message:
-          "No se encontraron productos que cumplan con los criterios de búsqueda.",
+          "De momento no se encuentra disponible un producto con dichas características.",
       });
     }
   } catch (error) {

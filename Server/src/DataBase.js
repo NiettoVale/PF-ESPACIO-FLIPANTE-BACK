@@ -3,6 +3,7 @@ const { Sequelize } = require("sequelize");
 const { DB_NAME, DB_PASSWORD, DB_HOST, DB_USER } = process.env;
 const ProductModel = require("./models/Product");
 const SizeModel = require("./models/Size");
+const UserModel = require("./models/User");
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
@@ -14,6 +15,7 @@ const sequelize = new Sequelize(
 // Inicializar modelos
 ProductModel(sequelize);
 SizeModel(sequelize);
+UserModel(sequelize);
 
 const { Product, Size } = sequelize.models;
 
