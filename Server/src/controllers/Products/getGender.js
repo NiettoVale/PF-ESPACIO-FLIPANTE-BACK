@@ -8,15 +8,13 @@ const getGender = async (_req, res) => {
       attributes: ["gender"], // Especifica las columnas que deseas seleccionar
     });
 
-   console.log(genders[0]);
-
-   if (genders.length > 0) {
-    // El resultado será un array de objetos con la propiedad 'gender'
-    const genderNames = genders.map((gender) => gender.gender);
-    const genderSet = new Set(genderNames);
-    const arrayGenders = [...genderSet];  // Corrección aquí
-    return res.status(200).json(arrayGenders);
-  }
+    if (genders.length > 0) {
+      // El resultado será un array de objetos con la propiedad 'gender'
+      const genderNames = genders.map((gender) => gender.gender);
+      const genderSet = new Set(genderNames);
+      const arrayGenders = [...genderSet]; // Corrección aquí
+      return res.status(200).json(arrayGenders);
+    }
 
     return res.status(200).json({ message: "No hay generados agregados" });
   } catch (error) {

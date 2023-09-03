@@ -20,7 +20,7 @@ const postProduct = async (req, res) => {
           allProducts.map(async (product) => {
             // Agregar stock directamente al producto
             await product.update({
-              stock: getRandomQuantity(50, 500), // Número aleatorio entre 1 y 100
+              stock: getRandomQuantity(50, 500), // Número aleatorio entre 50 y 500
             });
 
             // Obtener un número aleatorio de tallas para asignar al producto
@@ -58,6 +58,7 @@ const postProduct = async (req, res) => {
         price,
         description,
         sizes,
+        stock,
       } = req.body;
 
       if (
@@ -68,12 +69,26 @@ const postProduct = async (req, res) => {
         !images ||
         !price ||
         !description ||
-        !sizes
+        !sizes ||
+        !stock
       ) {
         return res.status(400).json({ error: "Faltan datos!!!" });
       }
 
-      const newProduct = await Product.create({
+      const modifiedSizes = {};
+
+      // Itera sobre las claves del objeto sizes
+      for (const key in sizes) {
+        if (sizes.hasOwnProperty(key)) {
+          // Elimina "sizes_" y convierte la clave a minúsculas
+          const modifiedKey = key.replace("sizes_", "");
+
+          // Asigna el valor correspondiente al nuevo objeto
+          modifiedSizes[modifiedKey] = sizes[key];
+        }
+      }
+
+      const createdProduct = await Product.create({
         name,
         gender,
         category,
@@ -81,43 +96,29 @@ const postProduct = async (req, res) => {
         images,
         price,
         description,
+        stock,
       });
 
-      const sizesDB = await Size.findAll(); // Cambiado de 'sizes' a 'sizesDB'
-      let stock = 0;
+      // Obtener las claves (tallas) del objeto modifiedSizes
+      const sizeKeys = Object.keys(modifiedSizes);
 
-      sizes.forEach((size) => {
-        for (const key in size) {
-          if (size.hasOwnProperty(key)) {
-            stock += size[key];
-          }
-        }
-      });
+      // Iterar sobre las tallas y guardarlas en la base de datos (si no existen)
+      for (const sizeKey of sizeKeys) {
+        const size = await Size.findOrCreate({
+          where: { name: sizeKey },
+          defaults: { delete: false }, // Asegura que el registro no esté marcado como eliminado
+        });
 
-      await newProduct.update({ stock });
-
-      sizesDB.forEach(async (size) => {
-        // Cambiado de 'sizes' a 'sizesDB'
-        const sizeName = Object.keys(size)[0]; // Obtiene el nombre de la talla (e.g., "xs")
-        // console.log(Object.keys(size)[0].dataValues);
-        const sizeCount = sizes[sizeName]; // Obtiene la cantidad de esa talla
-
-        // Verifica si la talla tiene una cantidad mayor que 0
-        if (sizes[sizeName] > 0) {
-          // Cambiado de 'sizes' a 'sizesDB'
-          // Agrega la talla al producto
-          await newProduct.addSize(sizeName, {
-            through: { quantity: sizeCount },
-          });
-        }
-      });
+        // Relaciona el producto con la talla
+        await createdProduct.addSize(size[0]);
+      }
 
       return res
         .status(200)
         .json({ message: "Producto cargado exitosamente." });
     }
   } catch (error) {
-    throw new Error(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
