@@ -81,7 +81,7 @@ const postProduct = async (req, res) => {
       for (const key in sizes) {
         if (sizes.hasOwnProperty(key)) {
           // Elimina "sizes_" y convierte la clave a minúsculas
-          const modifiedKey = key.replace("sizes_", "").toLowerCase();
+          const modifiedKey = key.replace("sizes_", "");
 
           // Asigna el valor correspondiente al nuevo objeto
           modifiedSizes[modifiedKey] = sizes[key];
