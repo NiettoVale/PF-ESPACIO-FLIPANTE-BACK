@@ -8,6 +8,7 @@ const register = require("./routes/Users_Routes/register.routes"); // Ruta para 
 const deleteUser = require("./routes/Users_Routes/deleteUser.routes"); // Ruta para eliminar un usuario
 const updataUser = require("./routes/Users_Routes/updateUser.routes"); // Ruta para actualizar información de usuario
 const getUser = require("./routes/Users_Routes/getUsers.routes"); // Ruta para obtener información de usuario
+const getUserById = require("./routes/Users_Routes/getUserById.routes");
 
 // Rutas para las prendas:
 const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ruta para obtener información de prendas
@@ -24,6 +25,10 @@ const filter = require("./routes/Filters_Routes/filterProduct.routes");
 const detail = require("./routes/Products_Routes/getProductById.routes");
 const getCategory = require("./routes/Products_Routes/getCategory.routes");
 
+// Ruta para favorites:
+const postFavorite = require("./routes/Favorite_Routes/postFavorites.routes");
+const getFavorites = require("./routes/Favorite_Routes/getFavorite.routes");
+
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
 server.use(cors()); // Habilita CORS para permitir solicitudes desde otros dominios
@@ -35,6 +40,7 @@ server.use("/", register); // Ruta para registrar un usuario
 server.use("/", deleteUser); // Ruta para eliminar un usuario
 server.use("/", updataUser); // Ruta para actualizar información de usuario
 server.use("/", getUser); // Ruta para obtener información de usuario
+server.use("/", getUserById);
 
 server.use("/", getProducts); // Ruta para obtener información de prendas
 server.use("/", postProducts); // Ruta para crear una nueva prenda
@@ -53,5 +59,9 @@ server.use("/", getCategory);
 
 // Ruta para los filtros
 server.use("/", filter);
+
+// Ruta para favorites:
+server.use("/", postFavorite);
+server.use("/", getFavorites);
 
 module.exports = server; // Exportar el servidor configurado

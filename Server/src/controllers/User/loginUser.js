@@ -16,7 +16,7 @@ const loginUser = async (req, res) => {
     const checkPassword = await compare(password, user.password);
     if (checkPassword) {
       // Si las credenciales son correctas, responder con éxito
-      return res.status(200).json({ message: "Inicio de sesión exitoso" });
+      return res.status(200).json(user);
     } else {
       return res.status(401).json({ error: "Contraseña incorrecta" });
     }
