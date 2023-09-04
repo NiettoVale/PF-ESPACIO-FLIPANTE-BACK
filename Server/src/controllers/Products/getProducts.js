@@ -13,6 +13,7 @@ const getProducts = async (_req, res) => {
           attributes: ["name"],
         },
       ],
+      order: [["id", "asc"]],
     });
 
     const formattedProducts = products.map((product) => {
