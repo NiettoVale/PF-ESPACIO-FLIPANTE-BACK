@@ -23,6 +23,25 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "",
+      },
+
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "",
+      },
+
+      DNI: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "",
+      },
+
       eliminado: {
         // Agrega este campo
         type: DataTypes.BOOLEAN,

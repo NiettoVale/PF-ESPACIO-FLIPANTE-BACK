@@ -1,76 +1,50 @@
-const { Product, Size } = require("../../DataBase");
-const products = require("./arrayProducts");
+const { Product } = require("../../DataBase");
 
-function getRandomQuantity(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-const postProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
   try {
-    const { name, gender, category, mainMaterial, images, price, description } =
-      req.body;
+    const { id } = req.params; // Suponiendo que estás pasando el ID del producto a actualizar en los parámetros de la URL.
+    const { name, gender, category, mainMaterial, images, price } = req.body;
 
-    const productCount = await Product.count();
+    // Verifica si el producto existe en la base de datos
+    const existingProduct = await Product.findByPk(id);
 
-    if (productCount === 0) {
-      await Product.bulkCreate(products);
+    if (!existingProduct) {
+      return res.status(404).json({ error: "Producto no encontrado." });
+    }
 
-      const sizes = await Size.findAll();
+    if (name !== undefined && name !== "") {
+      existingProduct.name = name;
+    }
 
-      if (sizes && sizes.length > 0) {
-        const allProducts = await Product.findAll();
-        await Promise.all(
-          allProducts.map(async (product) => {
-            // Agregar stock directamente al producto
-            await product.update({
-              stock: getRandomQuantity(50, 500), // Número aleatorio entre 1 y 100
-            });
+    if (gender !== undefined && gender !== "") {
+      existingProduct.gender = gender;
+    }
 
-            await product.addSizes(sizes);
-          })
-        );
-      } else {
-        return res
-          .status(500)
-          .json({ message: "No se encontraron tallas en la base de datos." });
-      }
+    if (category !== undefined && category !== "") {
+      existingProduct.name = name;
+    }
 
+    if (mainMaterial !== undefined && mainMaterial !== "") {
+      existingProduct.gender = gender;
+    }
+
+    if (images !== undefined && images !== "") {
+      existingProduct.name = name;
+    }
+
+    if (price !== undefined && price !== "") {
+      existingProduct.gender = gender;
+    }
+
+    if (existingProduct.changed()) {
+      await existingProduct.save();
       return res
         .status(200)
-        .json({ message: "Producto(s) cargado(s) exitosamente." });
-    } else {
-      const newProduct = await Product.create({
-        name,
-        gender,
-        category,
-        mainMaterial,
-        images,
-        price,
-        description,
-      });
-
-      const sizes = await Size.findAll();
-
-      if (sizes && sizes.length > 0) {
-        // Agregar stock directamente al producto
-        await newProduct.update({
-          stock: getRandomQuantity(1, 100), // Número aleatorio entre 1 y 100
-        });
-
-        await newProduct.addSizes(sizes);
-      } else {
-        return res
-          .status(500)
-          .json({ message: "No se encontraron tallas en la base de datos." });
-      }
-
-      return res
-        .status(200)
-        .json({ message: "Producto cargado exitosamente." });
+        .json({ message: "Producto actualizado con exito" });
     }
   } catch (error) {
-    throw new Error(error.message);
+    return res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = postProduct;
+module.exports = updateProduct;
