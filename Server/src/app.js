@@ -8,7 +8,7 @@ const register = require("./routes/Users_Routes/register.routes"); // Ruta para 
 const deleteUser = require("./routes/Users_Routes/deleteUser.routes"); // Ruta para eliminar un usuario
 const updataUser = require("./routes/Users_Routes/updateUser.routes"); // Ruta para actualizar información de usuario
 const getUser = require("./routes/Users_Routes/getUsers.routes"); // Ruta para obtener información de usuario
-const getUserById = require("./routes/Users_Routes/getUserById.routes");
+const getUserByName = require("./routes/Users_Routes/getUserByName.routes");
 
 // Rutas para las prendas:
 const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ruta para obtener información de prendas
@@ -40,7 +40,7 @@ server.use("/", register); // Ruta para registrar un usuario
 server.use("/", deleteUser); // Ruta para eliminar un usuario
 server.use("/", updataUser); // Ruta para actualizar información de usuario
 server.use("/", getUser); // Ruta para obtener información de usuario
-server.use("/", getUserById);
+server.use("/", getUserByName);
 
 server.use("/", getProducts); // Ruta para obtener información de prendas
 server.use("/", postProducts); // Ruta para crear una nueva prenda
