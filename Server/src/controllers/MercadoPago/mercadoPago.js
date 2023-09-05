@@ -5,7 +5,7 @@ mercadopago.configure({
   access_token: ACCESS_TOKEN,
 });
 
-const mercadoPago = async (_req, res) => {
+const mercadoPago = async (req, res) => {
   try {
     let preference = {
       items: [
