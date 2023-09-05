@@ -52,7 +52,6 @@ server.use("/", getProductByPrice);
 
 server.use("/", mercadoPago); //Ruta para Mercado pago
 
-
 // Rutas para el talle:
 server.use("/", postSize);
 server.use("/", getSize);
