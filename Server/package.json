@@ -23,5 +23,6 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.1"
+    "mercadopago": "^1.5.17"
   }
 }
