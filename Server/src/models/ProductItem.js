@@ -9,7 +9,6 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      // Puedes agregar más atributos según tus necesidades
     },
     { timestamps: false }
   );

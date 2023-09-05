@@ -2,6 +2,6 @@ const express = require("express");
 const updateProduct = require("../../controllers/Products/updateProduct");
 const router = express.Router();
 
-router.get("/products", updateProduct);
+router.put("/products/:id", updateProduct);
 
 module.exports = router;
