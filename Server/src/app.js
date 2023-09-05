@@ -17,12 +17,12 @@ const updateProducts = require("./routes/Products_Routes/updateProduct.routes");
 const postSize = require("./routes/Products_Routes/Size/postSize.routes");
 const getSize = require("./routes/Products_Routes/Size/getSize.routes");
 
-//
+// Rutas para Detalles y Filtros
 const getGender = require("./routes/Products_Routes/getGender.routes");
-
 const filter = require("./routes/Filters_Routes/filterProduct.routes");
 const detail = require("./routes/Products_Routes/getProductById.routes");
 const getCategory = require("./routes/Products_Routes/getCategory.routes");
+const mercadoPago = require("./routes/MercadoPago_Routes/mercadoPago.routes");
 
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
@@ -40,6 +40,7 @@ server.use("/", getProducts); // Ruta para obtener información de prendas
 server.use("/", postProducts); // Ruta para crear una nueva prenda
 server.use("/", deleteProducts); // Ruta para eliminar una prenda
 server.use("/", updateProducts); // Ruta para actualizar información de prendas
+server.use("/", mercadoPago); //Ruta para Mercado pago
 
 // Rutas para el talle:
 server.use("/", postSize);
