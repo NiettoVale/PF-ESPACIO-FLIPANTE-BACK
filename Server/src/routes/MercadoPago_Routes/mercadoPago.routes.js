@@ -1,7 +1,7 @@
 const express = require("express");
-const deleteUser = require("../../controllers/User/deleteUser");
+const mercadoPago = require("../../controllers/MercadoPago/mercadoPago");
 const router = express.Router();
 
-router.delete("/delete-user/:id", deleteUser);
+router.post("/create_preference", mercadoPago);
 
 module.exports = router;
