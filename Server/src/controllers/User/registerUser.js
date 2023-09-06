@@ -14,13 +14,13 @@ const registerUser = async (req, res) => {
 
     if (existingUserByName) {
       return res
-        .status(200)
+        .status(400)
         .json({ message: "El nombre de usuario ya existe" });
     }
 
     if (existingUserByEmail) {
       return res
-        .status(200)
+        .status(400)
         .json({ message: "El correo electrónico ya existe" });
     }
 
