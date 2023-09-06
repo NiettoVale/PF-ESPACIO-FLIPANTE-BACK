@@ -9,10 +9,19 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: "Faltan datos en la solicitud" });
     }
 
-    const existingUser = await User.findOne({ where: { name } });
+    const existingUserByName = await User.findOne({ where: { name } });
+    const existingUserByEmail = await User.findOne({ where: { email } });
 
-    if (existingUser) {
-      return res.status(200).json({ message: "El usuario ya existe" });
+    if (existingUserByName) {
+      return res
+        .status(200)
+        .json({ message: "El nombre de usuario ya existe" });
+    }
+
+    if (existingUserByEmail) {
+      return res
+        .status(200)
+        .json({ message: "El correo electrónico ya existe" });
     }
 
     const hashPassword = await encrypt(password);
