@@ -5,8 +5,15 @@ const loginUser = async (req, res) => {
   try {
     const { name, password } = req.body;
 
-    // Buscar al usuario por el nombre de usuario en la base de datos
-    const user = await User.findOne({ where: { name } });
+    const regexEmail = "/^[w-]+(.[w-]+)*@([w-]+.)+[a-zA-Z]{2,7}$/";
+    let user;
+
+    if (regexEmail.test(name)) {
+      const email = name;
+      await User.findOne({ where: { email } });
+    }
+
+    await User.findOne({ where: { name } });
 
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado" });
