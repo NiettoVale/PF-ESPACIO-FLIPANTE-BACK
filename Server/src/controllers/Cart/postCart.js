@@ -13,31 +13,33 @@ const postCart = async (req, res) => {
 
     const user = await User.findByPk(userId);
     const product = await Product.findByPk(productId);
-    let cart = await Cart.findOne({ where: { userId } });
 
-    if (!user || !product) {
-      return res
-        .status(404)
-        .json({ message: "Usuario o producto no encontrado." });
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado." });
     }
 
-    // Si no existe un carrito para este usuario, créalo
-    if (!cart) {
-      cart = await Cart.create({
-        userId,
-        productId,
-      });
+    if (!product) {
+      return res.status(404).json({ message: "Producto no encontrado." });
+    }
+
+    // Buscar si ya existe un registro en Cart para este usuario y producto
+    const existingCartItem = await Cart.findOne({
+      where: { userId, productId },
+    });
+
+    if (existingCartItem) {
+      // Si el registro existe, aumenta la cantidad en 1
+      existingCartItem.quantity += 1;
+      await existingCartItem.save();
     } else {
-      // Si ya existe un carrito, agrega una nueva fila con el mismo userId y el nuevo productId
-      await Cart.create({
-        userId,
-        productId,
-      });
+      // Si el registro no existe, crea uno nuevo
+      await Cart.create({ userId, productId });
     }
 
     return res.status(200).json({ message: "Producto agregado al carrito." });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    console.error("Error al agregar producto al carrito:", error);
+    return res.status(500).json({ message: "Error interno del servidor." });
   }
 };
 

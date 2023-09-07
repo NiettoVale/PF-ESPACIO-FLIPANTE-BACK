@@ -31,11 +31,6 @@ const registerUser = async (req, res) => {
       password: hashPassword,
     });
 
-    await Cart.create({
-      userId: newUser.id,
-      productId,
-    });
-
     return res.status(200).json({ message: "Usuario creado con éxito!!!" });
   } catch (error) {
     return res.status(500).json({ error: error.message });

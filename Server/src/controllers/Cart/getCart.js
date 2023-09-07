@@ -14,10 +14,10 @@ const getCart = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado." });
     }
 
-    // Buscar todos los productos en el carrito del usuario
+    // Buscar todos los productos en el carrito del usuario con sus cantidades
     const cartProducts = await Cart.findAll({
       where: { userId },
-      attributes: ["productId"],
+      attributes: ["productId", "quantity"], // Incluye la cantidad en la selección
     });
 
     if (!cartProducts || cartProducts.length === 0) {
@@ -29,20 +29,19 @@ const getCart = async (req, res) => {
     // Obtener los IDs de los productos en el carrito
     const productIds = cartProducts.map((cartProduct) => cartProduct.productId);
 
-    // Contar la cantidad de cada producto en el carrito
-    const productCountMap = {};
-    productIds.forEach((productId) => {
-      productCountMap[productId] = (productCountMap[productId] || 0) + 1;
-    });
-
-    // Buscar los detalles de los productos en el carrito y agregar la propiedad "cantidad"
+    // Buscar los detalles de los productos en el carrito
     const cartProductsDetails = await Product.findAll({
       where: { id: productIds },
     });
 
-    // Agregar la propiedad "cantidad" a los productos según la cuenta
+    // Agregar la propiedad "cantidad" a los productos según la cantidad en el carrito
     cartProductsDetails.forEach((product) => {
-      product.dataValues.cantidad = productCountMap[product.id];
+      const cartProduct = cartProducts.find(
+        (cartItem) => cartItem.productId === product.id
+      );
+      if (cartProduct) {
+        product.dataValues.cantidad = cartProduct.quantity;
+      }
     });
 
     return res.status(200).json(cartProductsDetails);

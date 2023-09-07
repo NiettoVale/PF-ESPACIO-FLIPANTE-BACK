@@ -31,9 +31,6 @@ Size.belongsToMany(Product, { through: "ProductItem" });
 User.belongsToMany(Product, { through: "FavoriteItem" });
 Product.belongsToMany(User, { through: "FavoriteItem" });
 
-User.hasMany(Cart, { foreignKey: "userId" });
-Cart.belongsTo(User, { foreignKey: "userId" });
-
 module.exports = {
   ...sequelize.models,
   connect: sequelize,
