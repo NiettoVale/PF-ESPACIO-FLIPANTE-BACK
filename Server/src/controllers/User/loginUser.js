@@ -4,7 +4,6 @@ const { compare } = require("./handlers/handleCrypt");
 const loginUser = async (req, res) => {
   try {
     const { name, password } = req.body;
-
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
     let user;
     // console.log(regexEmail);

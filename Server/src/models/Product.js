@@ -46,12 +46,6 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
 
-      stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
-
       delete: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

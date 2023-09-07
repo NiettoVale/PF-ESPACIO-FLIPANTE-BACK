@@ -1,203 +1,134 @@
-const { Product, Size } = require("../../DataBase");
+const { Product, Size, Stock } = require("../../DataBase");
 const products = require("./arrayProducts");
 
-function getRandomQuantity(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+// Función para crear un producto y gestionar las tallas y el stock
+const createProductWithSizesAndStock = async (
+  productData,
+  sizes,
+  stock,
+  productImages
+) => {
+  // Crea el producto en la tabla "Product"
+  const createdProduct = await Product.create({
+    ...productData,
+    images: productImages,
+  });
+
+  // Obtiene el ID del producto recién creado
+  const productId = createdProduct.id;
+
+  // Itera sobre las tallas y el stock
+  for (const sizeName in sizes) {
+    if (sizes.hasOwnProperty(sizeName)) {
+      const stockQuantity = sizes[sizeName];
+
+      // Busca la talla en la tabla "Size" basándose en el nombre
+      const size = await Size.findOne({ where: { name: sizeName } });
+
+      // Si se encuentra la talla, obtiene su ID
+      if (size) {
+        const sizeId = size.id;
+
+        // Verifica si ya existe una entrada en la tabla "Stock"
+        const stockEntry = await Stock.findOne({
+          where: { ProductId: productId, SizeId: sizeId },
+        });
+
+        // Si existe una entrada en "Stock", actualiza la cantidad de stock
+        if (stockEntry) {
+          const updatedQuantity = stockEntry.quantity + stockQuantity;
+          await Stock.update(
+            { quantity: updatedQuantity },
+            { where: { id: stockEntry.id } }
+          );
+        } else {
+          // Si no existe una entrada en "Stock", crea una nueva entrada
+          await Stock.create({
+            ProductId: productId,
+            SizeId: sizeId,
+            quantity: stockQuantity,
+          });
+        }
+      }
+    }
+  }
+
+  return createdProduct;
+};
 
 const postProduct = async (req, res) => {
   try {
-    const productCount = await Product.count();
+    const count = await Product.count();
 
-    if (productCount === 0) {
-      await Product.bulkCreate(products);
+    console.log(count);
 
-      const sizes = await Size.findAll();
+    if (count === 0) {
+      // Solo si no hay productos en la base de datos, crea los productos del array 'products'
+      for (const productData of products) {
+        const {
+          name,
+          gender,
+          category,
+          mainMaterial,
+          price,
+          description,
+          sizes,
+          stock,
+          images,
+        } = productData;
 
-      if (sizes && sizes.length > 0) {
-        const allProducts = await Product.findAll();
-        await Promise.all(
-          allProducts.map(async (product) => {
-            // Agregar stock directamente al producto
-            await product.update({
-              stock: getRandomQuantity(50, 500), // Número aleatorio entre 50 y 500
-            });
-
-            // Obtener un número aleatorio de tallas para asignar al producto
-            const randomSizeCount = getRandomQuantity(1, sizes.length);
-            const randomSizes = [];
-
-            // Crear una lista de índices de tallas únicos aleatorios
-            while (randomSizes.length < randomSizeCount) {
-              const randomIndex = getRandomQuantity(0, sizes.length - 1);
-              if (!randomSizes.includes(randomIndex)) {
-                randomSizes.push(randomIndex);
-              }
-            }
-
-            // Asignar las tallas aleatorias al producto
-            await product.addSizes(randomSizes.map((index) => sizes[index]));
-          })
+        await createProductWithSizesAndStock(
+          {
+            name,
+            gender,
+            category,
+            mainMaterial,
+            price,
+            description,
+          },
+          sizes,
+          stock,
+          images
         );
-      } else {
-        return res
-          .status(500)
-          .json({ message: "No se encontraron tallas en la base de datos." });
       }
 
-      return res
-        .status(200)
-        .json({ message: "Productos cargados exitosamente." });
+      return res.status(200).json({ message: "Productos cargados con éxito" });
     } else {
       const {
         name,
         gender,
         category,
         mainMaterial,
-        images,
         price,
         description,
         sizes,
         stock,
+        images,
       } = req.body;
 
-      if (
-        !name ||
-        !gender ||
-        !category ||
-        !mainMaterial ||
-        !images ||
-        !price ||
-        !description ||
-        !sizes ||
-        !stock
-      ) {
-        return res.status(400).json({ error: "Faltan datos!!!" });
-      }
-
-      const modifiedSizes = {};
-
-      // Itera sobre las claves del objeto sizes
-      for (const key in sizes) {
-        if (sizes.hasOwnProperty(key)) {
-          // Elimina "sizes_" y convierte la clave a minúsculas
-          const modifiedKey = key.replace("sizes_", "");
-
-          // Asigna el valor correspondiente al nuevo objeto
-          modifiedSizes[modifiedKey] = sizes[key];
-        }
-      }
-
-      const createdProduct = await Product.create({
-        name,
-        gender,
-        category,
-        mainMaterial,
-        images,
-        price,
-        description,
+      await createProductWithSizesAndStock(
+        {
+          name,
+          gender,
+          category,
+          mainMaterial,
+          price,
+          description,
+        },
+        sizes,
         stock,
-      });
+        images
+      );
 
-      // Obtener las claves (tallas) del objeto modifiedSizes
-      const sizeKeys = Object.keys(modifiedSizes);
-
-      // Iterar sobre las tallas y guardarlas en la base de datos (si no existen)
-      for (const sizeKey of sizeKeys) {
-        const size = await Size.findOrCreate({
-          where: { name: sizeKey },
-          defaults: { delete: false }, // Asegura que el registro no esté marcado como eliminado
-        });
-
-        // Relaciona el producto con la talla
-        await createdProduct.addSize(size[0]);
-      }
-
+      // Retorna una respuesta JSON de éxito
       return res
         .status(200)
         .json({ message: "Producto cargado exitosamente." });
     }
   } catch (error) {
+    // En caso de error, retorna una respuesta JSON con el mensaje de error y un código de estado 500 (Error del servidor)
     return res.status(500).json({ error: error.message });
   }
 };
 
 module.exports = postProduct;
-
-// Codigfo Anterior (carga todos los talles en todos los productos):
-// const { Product, Size } = require("../../DataBase");
-// const products = require("./arrayProducts");
-
-// function getRandomQuantity(min, max) {
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-
-// const postProduct = async (req, res) => {
-//   try {
-//     const { name, gender, category, mainMaterial, images, price, description } =
-//       req.body;
-
-//     const productCount = await Product.count();
-
-//     if (productCount === 0) {
-//       await Product.bulkCreate(products);
-
-//       const sizes = await Size.findAll();
-
-//       if (sizes && sizes.length > 0) {
-//         const allProducts = await Product.findAll();
-//         await Promise.all(
-//           allProducts.map(async (product) => {
-//             // Agregar stock directamente al producto
-//             await product.update({
-//               stock: getRandomQuantity(50, 500), // Número aleatorio entre 1 y 100
-//             });
-
-//             await product.addSizes(sizes);
-//           })
-//         );
-//       } else {
-//         return res
-//           .status(500)
-//           .json({ message: "No se encontraron tallas en la base de datos." });
-//       }
-
-//       return res
-//         .status(200)
-//         .json({ message: "Producto(s) cargado(s) exitosamente." });
-//     } else {
-//       const newProduct = await Product.create({
-//         name,
-//         gender,
-//         category,
-//         mainMaterial,
-//         images,
-//         price,
-//         description,
-//       });
-
-//       const sizes = await Size.findAll();
-
-//       if (sizes && sizes.length > 0) {
-//         // Agregar stock directamente al producto
-//         await newProduct.update({
-//           stock: getRandomQuantity(1, 100), // Número aleatorio entre 1 y 100
-//         });
-
-//         await newProduct.addSizes(sizes);
-//       } else {
-//         return res
-//           .status(500)
-//           .json({ message: "No se encontraron tallas en la base de datos." });
-//       }
-
-//       return res
-//         .status(200)
-//         .json({ message: "Producto cargado exitosamente." });
-//     }
-//   } catch (error) {
-//     throw new Error(error.message);
-//   }
-// };
-
-// module.exports = postProduct;
