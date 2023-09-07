@@ -5,6 +5,9 @@ const ProductModel = require("./models/Product");
 const SizeModel = require("./models/Size");
 const UserModel = require("./models/User");
 const FavoriteModel = require("./models/Favorite");
+const CartModel = require("./models/Cart");
+const StockModel = require("./models/Stock");
+
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
@@ -19,12 +22,15 @@ ProductModel(sequelize);
 SizeModel(sequelize);
 UserModel(sequelize);
 FavoriteModel(sequelize);
+CartModel(sequelize);
+StockModel(sequelize);
 
-const { Product, Size, User } = sequelize.models;
+const { Product, Size, User, Cart, Stock } = sequelize.models;
+
 
 // Configurar relaciones
-Product.belongsToMany(Size, { through: "ProductItem" });
-Size.belongsToMany(Product, { through: "ProductItem" });
+Product.belongsToMany(Size, { through: Stock });
+Size.belongsToMany(Product, { through: Stock });
 
 User.belongsToMany(Product, { through: "FavoriteItem" });
 Product.belongsToMany(User, { through: "FavoriteItem" });
