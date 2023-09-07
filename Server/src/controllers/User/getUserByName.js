@@ -9,7 +9,7 @@ const getUserByName = async (req, res) => {
       },
     });
     if (!userFound) {
-      return res.status(400).json({ error: "Usuario no encontrado" });
+      return res.status(204);
     }
     return res.status(200).json(userFound);
   } catch (error) {
