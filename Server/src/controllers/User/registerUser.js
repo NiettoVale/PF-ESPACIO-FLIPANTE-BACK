@@ -1,4 +1,4 @@
-const { User } = require("../../DataBase");
+const { User, Cart } = require("../../DataBase");
 const { encrypt } = require("./handlers/handleCrypt");
 
 const registerUser = async (req, res) => {
@@ -25,7 +25,7 @@ const registerUser = async (req, res) => {
     }
 
     const hashPassword = await encrypt(password);
-    await User.create({
+    const newUser = await User.create({
       name,
       email,
       password: hashPassword,

@@ -9,6 +9,13 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAccesorios%2Fri%C3%B1onera%20Simil%2FRi%C3%B1onera%20simil%20(2).jpeg?alt=media&token=b3701db5-806e-4ef0-a976-a50ae211dc06",
     ],
     price: 4000,
+   
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    }
   },
   {
     name: "Riñonera cuero Hombre",
@@ -21,6 +28,13 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAccesorios%2Fri%C3%B1onera%20cuero%2FRi%C3%B1onera%20cuero%20hombre%2FRi%C3%B1onera%20cuero%20hombre%20%20(3).jpeg?alt=media&token=a4b150d1-2230-4877-8b1c-d6484058b47e",
     ],
     price: 5000,
+    
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Cargo nacional Hombre arena",
@@ -33,7 +47,14 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FCargo%20Nacional%2FCargo%20nacional%20arena%20hombre%20(3).jpeg?alt=media&token=ddb36f7d-9366-4c7e-a499-ab54390416de",
     ],
     price: 10000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
+
   {
     name: "Pantalón nacional Hombre azul",
     gender: "Hombre",
@@ -45,6 +66,13 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FCargo%20Nacional%2FCargo%20nacional%20azul%20hombre%20(3).png?alt=media&token=31935436-a303-40fd-9d57-69153049fbfa",
     ],
     price: 15000,
+
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Pantalón nacional Hombre beige",
@@ -56,6 +84,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FCargo%20Nacional%2FCargo%20nacional%20beige%20hombre%20(2).png?alt=media&token=4c95d200-82ae-40f9-857b-04240e897094",
     ],
     price: 18000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Pantalón importado Hombre",
@@ -69,6 +103,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FCargo%20importado%2FCargo%20importado%20hombre%20%20(4).jpeg?alt=media&token=6c02c670-9f42-496b-8226-8e6b63540484",
     ],
     price: 19000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Rompe vientos azul",
@@ -81,6 +121,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FRompevientos%2FRompe%20vientos%20azul%20(3).jpeg?alt=media&token=fe452a64-c181-42dc-83f7-c3b444b5128b",
     ],
     price: 12000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Rompe vientos azul Oscuro",
@@ -93,6 +139,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FRompevientos%2FRompe%20vientos%20azul%20oscura%20(3).jpeg?alt=media&token=a2f3d061-43cf-4c67-b56b-2a046cc1a5cd",
     ],
     price: 16000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Rompe vientos negro",
@@ -105,6 +157,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FRompevientos%2FRompe%20vientos%20negra%20(3).jpeg?alt=media&token=f3f7792a-c88a-49d7-be53-9a6d9a8b813a",
     ],
     price: 11000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Rompe vientos verde",
@@ -117,6 +175,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FRompevientos%2FRompe%20vientos%20verde%20(3).jpeg?alt=media&token=04cfc7ca-0e1c-480e-ba74-0d28bc747998",
     ],
     price: 15879,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Jardinero jean",
@@ -146,6 +210,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FBUZOS%2FBuzo%20rustico%20retro%207.jpeg?alt=media&token=a4b3132b-6321-4397-8cf7-f22631e71d78",
     ],
     price: 20000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Calza ",
@@ -161,6 +231,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FCALZAS%2Fcalza%20lisa%204.jpeg?alt=media&token=16029428-4534-4754-b009-ea13621e4560",
     ],
     price: 20000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Campera azul corazón",
@@ -173,6 +249,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FCAMPERAS%2FCampera%20azul%20corazon%20Acetato%203.jpeg?alt=media&token=307f1ad9-dcc0-448f-9606-98c503cccd86",
     ],
     price: 20000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Campera acetato",
@@ -186,6 +268,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FCAMPERAS%2FCampera%20colores%20acetato%204.jpeg?alt=media&token=c3e5aab5-5e77-495f-a363-605f57c86720",
     ],
     price: 8000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Campera popit acetato",
@@ -198,6 +286,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FCAMPERAS%2FCampera%20popit%20acetato%203.jpeg?alt=media&token=72dc496b-bf1f-432b-b70b-bccadce83ddf",
     ],
     price: 5500,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Campera rosa corazón",
@@ -209,6 +303,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FCAMPERAS%2FCampera%20rosa%20corazon%20Acetato%201.jpeg?alt=media&token=01737224-0cd3-4eac-b2c3-e5f7b44f21e0",
     ],
     price: 11000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Conjunto crazy bang",
@@ -221,6 +321,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FCONJUNTOS%2FConjunto%20Crazy%20Bang%20Lycra%203.jpeg?alt=media&token=903b3ad6-4d30-4884-8c54-cd49b31771b0",
     ],
     price: 38690,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Conjunto baltic spum",
@@ -238,6 +344,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FCONJUNTOS%2FConjunto%20batic%20corazon%20spum%208.jpeg?alt=media&token=2f523113-6156-41cd-9906-02bf77bf518d",
     ],
     price: 54321,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Remera botoneso",
@@ -248,6 +360,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FREMERAS%2FRemera%20Botones%201.jpeg?alt=media&token=5f9745f1-5eef-42c2-a0b7-3f86549f4e73",
     ],
     price: 13500,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Vestido Morley",
@@ -260,6 +378,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenas%2FVESTIDOS%2FVestido%20Morley%204.jpeg?alt=media&token=8cbdfac4-219f-42d7-8393-ad36a84ca2aa",
     ],
     price: 25000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Remera just for me",
@@ -271,6 +395,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenes%2FRemera%2FRemera%20Just%20For%20Me%202.jpeg?alt=media&token=64a3fed9-7964-47de-bce8-752f45778fdd",
     ],
     price: 7000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Remera gamer",
@@ -282,6 +412,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenes%2FRemera%2FRemera%20gamer%202.jpeg?alt=media&token=80163215-f8de-40d4-83c0-eeaa48336a29",
     ],
     price: 45000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Remera impostor",
@@ -292,7 +428,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenes%2FRemera%2FRemera%20impostor%201.jpeg?alt=media&token=94468fb3-f4b2-40fe-a13a-2313a7ce8af6",
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenes%2FRemera%2FRemera%20impostor%202.jpeg?alt=media&token=383519ea-291e-4353-ad9f-c04f20c68377",
     ],
-    price: 14456,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
   {
     name: "Remera waves",
@@ -303,6 +444,12 @@ const products = [
       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FNi%C3%B1_s%2FNenes%2FRemera%2FRemera%20waves.jpeg?alt=media&token=76d5186e-3be5-4c79-87e6-cab0e98242a8",
     ],
     price: 14456,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      XL: 50,
+    },
   },
 ];
 
