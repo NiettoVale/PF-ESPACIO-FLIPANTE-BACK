@@ -5,15 +5,15 @@ const loginUser = async (req, res) => {
   try {
     const { name, password } = req.body;
 
-    const regexEmail = "/^[w-]+(.[w-]+)*@([w-]+.)+[a-zA-Z]{2,7}$/";
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
     let user;
-
+    // console.log(regexEmail);
     if (regexEmail.test(name)) {
       const email = name;
-      await User.findOne({ where: { email } });
+      user = await User.findOne({ where: { email } }); // Asignar el resultado a la variable user
+    } else {
+      user = await User.findOne({ where: { name } }); // Asignar el resultado a la variable user
     }
-
-    await User.findOne({ where: { name } });
 
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado" });

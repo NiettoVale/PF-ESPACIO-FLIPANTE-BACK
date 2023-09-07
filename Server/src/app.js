@@ -31,6 +31,12 @@ const postFavorite = require("./routes/Favorite_Routes/postFavorites.routes");
 const getFavorites = require("./routes/Favorite_Routes/getFavorite.routes");
 const deleteFav = require("./routes/Favorite_Routes/deleteFavorite.routes");
 
+// Ruta para Cart:
+const postCart = require("./routes/Cart_Routes/postCart.routes");
+const getCart = require("./routes/Cart_Routes/getCart.routes");
+const deleteCart = require("./routes/Cart_Routes/deleteCart.routes");
+const deleteAllCart = require("./routes/Cart_Routes/deleteAllCart.routes");
+
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
 server.use(cors()); // Habilita CORS para permitir solicitudes desde otros dominios
@@ -69,5 +75,10 @@ server.use("/", filter);
 server.use("/", postFavorite);
 server.use("/", getFavorites);
 server.use("/", deleteFav);
+
+server.use("/", postCart);
+server.use("/", getCart);
+server.use("/", deleteCart);
+server.use("/", deleteAllCart);
 
 module.exports = server; // Exportar el servidor configurado
