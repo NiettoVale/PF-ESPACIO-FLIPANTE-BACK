@@ -8,6 +8,7 @@ const FavoriteModel = require("./models/Favorite");
 const CartModel = require("./models/Cart");
 const StockModel = require("./models/Stock");
 
+
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
 
@@ -25,6 +26,7 @@ CartModel(sequelize);
 StockModel(sequelize);
 
 const { Product, Size, User, Cart, Stock } = sequelize.models;
+
 
 // Configurar relaciones
 Product.belongsToMany(Size, { through: Stock });
