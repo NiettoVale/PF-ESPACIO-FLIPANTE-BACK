@@ -3,7 +3,7 @@ const { Sequelize } = require("sequelize");
 
 const getProductByPrice = async (req, res) => {
   try {
-    const { desde, hasta, order } = req.params;
+    const { desde, hasta,} = req.params;
     console.log(`Desde: ${desde}, Hasta: ${hasta}`);
 
     const productsInRange = await Product.findAll({
@@ -12,7 +12,6 @@ const getProductByPrice = async (req, res) => {
           [Sequelize.Op.between]: [desde, hasta], // Buscar productos con precio en el rango [desde, hasta]
         },
       },
-      order: [["price", order.toUpperCase()]], // Ordenar por precio de menor a mayor
     });
 
     if (!productsInRange || productsInRange.length === 0) {
