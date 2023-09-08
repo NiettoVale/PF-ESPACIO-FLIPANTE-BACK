@@ -9,6 +9,7 @@ const deleteUser = require("./routes/Users_Routes/deleteUser.routes"); // Ruta p
 const updataUser = require("./routes/Users_Routes/updateUser.routes"); // Ruta para actualizar información de usuario
 const getUser = require("./routes/Users_Routes/getUsers.routes"); // Ruta para obtener información de usuario
 const getUserByName = require("./routes/Users_Routes/getUserByName.routes");
+const updatePassword = require("./routes/Users_Routes/changePassword.routes");
 
 // Rutas para las prendas:
 const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ruta para obtener información de prendas
@@ -80,5 +81,6 @@ server.use("/", postCart);
 server.use("/", getCart);
 server.use("/", deleteCart);
 server.use("/", deleteAllCart);
+server.use("/", updatePassword);
 
 module.exports = server; // Exportar el servidor configurado

@@ -1,21 +1,15 @@
 const { User } = require("../../DataBase");
-const { encrypt } = require("./handlers/handleCrypt");
 
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, password, phone, address, dni } = req.body;
+    const { name, phone, address, dni } = req.body;
     let DNI = dni;
 
     const updateUser = await User.findByPk(id);
 
     if (name !== undefined && name !== "") {
       updateUser.name = name;
-    }
-
-    if (password !== undefined && password !== "") {
-      const hashPassword = await encrypt(password);
-      updateUser.password = hashPassword;
     }
 
     if (phone !== undefined && phone !== "") {
@@ -41,3 +35,12 @@ const updateUser = async (req, res) => {
 };
 
 module.exports = updateUser;
+
+/*
+const { encrypt } = require("./handlers/handleCrypt");
+
+    if (password !== undefined && password !== "") {
+      const hashPassword = await encrypt(password);
+      updateUser.password = hashPassword;
+    }
+*/
