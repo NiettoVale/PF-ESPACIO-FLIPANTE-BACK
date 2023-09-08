@@ -3,7 +3,7 @@ const { User } = require("../../DataBase");
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, phone, address, dni } = req.body;
+    const { name, phone, address, dni, imageProfile } = req.body;
     let DNI = dni;
 
     const updateUser = await User.findByPk(id);
@@ -24,6 +24,10 @@ const updateUser = async (req, res) => {
       updateUser.DNI = DNI;
     }
 
+    if (imageProfile !== undefined && imageProfile !== "") {
+      updateUser.imageProfile = imageProfile;
+    }
+
     if (updateUser.changed()) {
       await updateUser.save();
       return res.status(200).json({ message: "Usuario actualizado con exito" });
@@ -35,12 +39,3 @@ const updateUser = async (req, res) => {
 };
 
 module.exports = updateUser;
-
-/*
-const { encrypt } = require("./handlers/handleCrypt");
-
-    if (password !== undefined && password !== "") {
-      const hashPassword = await encrypt(password);
-      updateUser.password = hashPassword;
-    }
-*/
