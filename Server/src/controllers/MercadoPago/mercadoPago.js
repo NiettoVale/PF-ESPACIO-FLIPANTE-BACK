@@ -16,9 +16,9 @@ const mercadoPago = async (req, res) => {
         },
       ],
       back_urls: {
-        success: "http://localhost:5173",
-        failure: "http://localhost:5173",
-        pending: "",
+        success: "http://localhost:3000/cart",
+        failure: "http://localhost:3001/",
+        pending: "http://localhost:3001/",
       },
       auto_return: "approved",
     };
@@ -26,6 +26,7 @@ const mercadoPago = async (req, res) => {
     mercadopago.preferences
       .create(preference)
       .then(function (response) {
+        console.log("Respuesta de Mercado Pago:", response.body);
         res.json({
           id: response.body.id,
         });
