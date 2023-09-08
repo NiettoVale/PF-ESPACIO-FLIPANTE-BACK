@@ -4,7 +4,8 @@ const { encrypt } = require("./handlers/handleCrypt");
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, password } = req.body;
+    const { name, password, phone, address, dni } = req.body;
+    let DNI = dni;
 
     const updateUser = await User.findByPk(id);
 
@@ -15,6 +16,18 @@ const updateUser = async (req, res) => {
     if (password !== undefined && password !== "") {
       const hashPassword = await encrypt(password);
       updateUser.password = hashPassword;
+    }
+
+    if (phone !== undefined && phone !== "") {
+      updateUser.phone = phone;
+    }
+
+    if (address !== undefined && address !== "") {
+      updateUser.address = address;
+    }
+
+    if (DNI !== undefined && DNI !== "") {
+      updateUser.DNI = DNI;
     }
 
     if (updateUser.changed()) {
