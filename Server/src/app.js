@@ -9,6 +9,7 @@ const deleteUser = require("./routes/Users_Routes/deleteUser.routes"); // Ruta p
 const updataUser = require("./routes/Users_Routes/updateUser.routes"); // Ruta para actualizar información de usuario
 const getUser = require("./routes/Users_Routes/getUsers.routes"); // Ruta para obtener información de usuario
 const getUserByName = require("./routes/Users_Routes/getUserByName.routes");
+const registerGoogle = require("./routes/Users_Routes/registerGoogle.routes");
 const updatePassword = require("./routes/Users_Routes/changePassword.routes");
 
 // Rutas para las prendas:
@@ -50,6 +51,7 @@ server.use("/", deleteUser); // Ruta para eliminar un usuario
 server.use("/", updataUser); // Ruta para actualizar información de usuario
 server.use("/", getUser); // Ruta para obtener información de usuario
 server.use("/", getUserByName);
+server.use("/", registerGoogle); // Ruta para registrar un usuario
 
 server.use("/", getProducts); // Ruta para obtener información de prendas
 server.use("/", postProducts); // Ruta para crear una nueva prenda

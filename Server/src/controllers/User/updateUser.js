@@ -5,6 +5,7 @@ const updateUser = async (req, res) => {
     const { id } = req.params;
     const { name, phone, address, dni, imageProfile } = req.body;
     let DNI = dni;
+    console.log(imageProfile);
 
     const updateUser = await User.findByPk(id);
 
@@ -24,7 +25,11 @@ const updateUser = async (req, res) => {
       updateUser.DNI = DNI;
     }
 
-    if (imageProfile !== undefined && imageProfile !== "") {
+    if (
+      imageProfile !== undefined &&
+      imageProfile !== "" &&
+      imageProfile !== null
+    ) {
       updateUser.imageProfile = imageProfile;
     }
 
