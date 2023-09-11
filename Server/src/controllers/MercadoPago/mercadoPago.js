@@ -16,7 +16,7 @@ const mercadoPago = async (req, res) => {
         },
       ],
       back_urls: {
-        success: "https://espacioflipante.vercel.app/",
+        success: "https://flipante-espacio.vercel.app/",
         failure: "http://localhost:5173",
         pending: "",
       },
