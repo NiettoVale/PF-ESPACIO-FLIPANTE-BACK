@@ -1,11 +1,18 @@
-const { Product } = require("../../DataBase");
+const { Product, Size, Stock } = require("../../DataBase");
+
 //const products = require("./arrayProducts");
 
 const getCategory = async (_req, res) => {
   try {
     // Especifica las columnas que deseas seleccionar, en este caso, solo la columna 'name'
     const categories = await Product.findAll({
-      attributes: ["category"], // Especifica las columnas que deseas seleccionar
+      attributes: ["category"],
+      include: [
+        {
+          model: Size,
+          through: Stock,
+        },
+      ], // Especifica las columnas que deseas seleccionar
     });
 
     if (categories.length > 0) {

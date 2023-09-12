@@ -21,6 +21,7 @@ const getFavorites = async (req, res) => {
 
     // Ordenar los productos favoritos por ID de forma ascendente
     const favorites = favoriteProducts.sort((a, b) => a.id - b.id);
+    console.log(favorites);
 
     return res.status(200).json(favorites);
   } catch (error) {

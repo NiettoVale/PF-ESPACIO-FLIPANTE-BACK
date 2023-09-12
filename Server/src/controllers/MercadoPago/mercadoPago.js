@@ -16,9 +16,9 @@ const mercadoPago = async (req, res) => {
         },
       ],
       back_urls: {
-        success: "http://localhost:3000/cart",
-        failure: "http://localhost:3001/",
-        pending: "http://localhost:3001/",
+        success: "https://pf-front-denuevo.vercel.app/",
+        failure: "http://localhost:5173",
+        pending: "",
       },
       auto_return: "approved",
     };

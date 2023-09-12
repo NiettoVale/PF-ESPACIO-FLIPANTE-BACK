@@ -21,9 +21,7 @@ const getCart = async (req, res) => {
     });
 
     if (!cartProducts || cartProducts.length === 0) {
-      return res.status(404).json({
-        message: "No se encontraron productos en el carrito de este usuario.",
-      });
+      return res.status(404).json([]);
     }
 
     // Obtener los IDs de los productos en el carrito
