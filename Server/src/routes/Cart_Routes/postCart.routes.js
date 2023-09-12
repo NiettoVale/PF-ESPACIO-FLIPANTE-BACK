@@ -3,6 +3,6 @@ const router = express.Router();
 const postCart = require("../../controllers/Cart/postCart");
 
 // Ruta para agregar al carrito por un usuario
-router.post("/users/:userId/products/:productId/cart", postCart);
+router.post("/:userId/:productId/:sizeId", postCart);
 
 module.exports = router;
