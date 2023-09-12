@@ -1,11 +1,11 @@
 const { User } = require("../../DataBase");
 const { encrypt } = require("./handlers/handleCrypt");
 
-const registerUser = async (req, res) => {
+const registerUserGoogle = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, imageProfile } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !imageProfile) {
       return res.status(400).json({ message: "Faltan datos en la solicitud" });
     }
 
@@ -24,16 +24,17 @@ const registerUser = async (req, res) => {
         .json({ message: "El correo electrónico ya existe" });
     }
 
-    const hashPassword = await encrypt(password);
+    const hashPassword = await encrypt("admin");
     await User.create({
       name,
       email,
       password: hashPassword,
+      imageProfile,
     });
-    return res.status(200).json({ message: "Usuario creado con éxito!!!" });
+    return res.status(204).json();
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = registerUser;
+module.exports = registerUserGoogle;

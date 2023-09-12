@@ -1,10 +1,11 @@
 const { User } = require("../../DataBase");
-const { encrypt } = require("./handlers/handleCrypt");
 
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, password } = req.body;
+    const { name, phone, address, dni, imageProfile } = req.body;
+    let DNI = dni;
+    console.log(imageProfile);
 
     const updateUser = await User.findByPk(id);
 
@@ -12,9 +13,24 @@ const updateUser = async (req, res) => {
       updateUser.name = name;
     }
 
-    if (password !== undefined && password !== "") {
-      const hashPassword = await encrypt(password);
-      updateUser.password = hashPassword;
+    if (phone !== undefined && phone !== "") {
+      updateUser.phone = phone;
+    }
+
+    if (address !== undefined && address !== "") {
+      updateUser.address = address;
+    }
+
+    if (DNI !== undefined && DNI !== "") {
+      updateUser.DNI = DNI;
+    }
+
+    if (
+      imageProfile !== undefined &&
+      imageProfile !== "" &&
+      imageProfile !== null
+    ) {
+      updateUser.imageProfile = imageProfile;
     }
 
     if (updateUser.changed()) {

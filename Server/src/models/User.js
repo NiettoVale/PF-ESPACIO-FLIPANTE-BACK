@@ -41,7 +41,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: "",
       },
-
+      imageProfile: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       eliminado: {
         // Agrega este campo
         type: DataTypes.BOOLEAN,
