@@ -3,7 +3,10 @@ const { Sequelize } = require("sequelize");
 
 const getProductByPrice = async (req, res) => {
   try {
+
     const { desde, hasta } = req.params;
+
+
     console.log(`Desde: ${desde}, Hasta: ${hasta}`);
 
     const productsInRange = await Product.findAll({

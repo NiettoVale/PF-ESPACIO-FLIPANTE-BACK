@@ -26,6 +26,7 @@ const mercadoPago = async (req, res) => {
     mercadopago.preferences
       .create(preference)
       .then(function (response) {
+        console.log("Respuesta de Mercado Pago:", response.body);
         res.json({
           id: response.body.id,
         });
