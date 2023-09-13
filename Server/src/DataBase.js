@@ -7,7 +7,7 @@ const UserModel = require("./models/User");
 const FavoriteModel = require("./models/Favorite");
 const CartModel = require("./models/Cart");
 const StockModel = require("./models/Stock");
-const SalesHistoryModel = require("./models/SalesHistory");
+const OrderModel = require("./models/SalesHistory");
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
@@ -24,7 +24,7 @@ UserModel(sequelize);
 FavoriteModel(sequelize);
 CartModel(sequelize);
 StockModel(sequelize);
-SalesHistoryModel(sequelize);
+OrderModel(sequelize);
 
 const { Product, Size, User, Cart, Stock } = sequelize.models;
 
