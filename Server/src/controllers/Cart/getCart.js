@@ -17,33 +17,26 @@ const getCart = async (req, res) => {
     // Buscar todos los productos en el carrito del usuario con sus cantidades y tallas
     const cartProducts = await Cart.findAll({
       where: { userId },
-      attributes: ["productId", "quantity", "sizeId"],
+      attributes: ["id", "productId", "quantity", "sizeId"], // Incluye el ID del carrito
     });
 
     if (!cartProducts || cartProducts.length === 0) {
       return res.status(404).json([]);
     }
 
-    // Obtener los IDs de los productos en el carrito
-    const productIds = cartProducts.map((cartProduct) => cartProduct.productId);
-
-    // Buscar los detalles de los productos en el carrito
-    const cartProductsDetails = await Product.findAll({
-      where: { id: productIds },
-    });
-
-    // Crear un mapa para almacenar los productos únicos y sus tallas correspondientes
-    const uniqueProducts = new Map();
-
-    // Iterar sobre los productos en el carrito y asignar las tallas
-    cartProductsDetails.forEach((product) => {
-      const matchingCartProducts = cartProducts.filter(
-        (cartItem) => cartItem.productId === product.id
-      );
-
-      matchingCartProducts.forEach((cartProduct) => {
+    // Usar Promise.all para manejar las promesas de manera paralela
+    const resultProducts = await Promise.all(
+      cartProducts.map(async (cartProduct) => {
+        const productId = cartProduct.productId;
         const sizeId = cartProduct.sizeId;
         const quantity = cartProduct.quantity;
+
+        // Buscar el producto correspondiente en la base de datos
+        const product = await Product.findByPk(productId);
+
+        if (!product) {
+          return null; // Manejo de producto no encontrado, puedes personalizar esto
+        }
 
         // Crear una copia del producto para evitar sobrescribirlo
         const productCopy = { ...product.dataValues };
@@ -52,9 +45,12 @@ const getCart = async (req, res) => {
         productCopy.cantidad = quantity;
         productCopy.sizeId = sizeId;
 
-        // Supongamos que tienes un modelo de Stock con una propiedad `quantity`
-        const stockInfo = Stock.findOne({
-          where: { ProductId: product.id, SizeId: sizeId },
+        // Agregar el ID del carrito al producto
+        productCopy.id = cartProduct.id;
+
+        // Buscar la cantidad en stock en la tabla Stock
+        const stockInfo = await Stock.findOne({
+          where: { ProductId: productId, SizeId: sizeId },
         });
 
         if (stockInfo) {
@@ -63,16 +59,16 @@ const getCart = async (req, res) => {
           productCopy.stock = 0; // Otra acción en caso de que no haya stock
         }
 
-        // Almacenar el producto único en el mapa usando una clave única -por ejemplo, productId y sizeId concatenados-
-        const uniqueKey = `${product.id}_${sizeId}`;
-        uniqueProducts.set(uniqueKey, productCopy);
-      });
-    });
+        return productCopy;
+      })
+    );
 
-    // Obtener los valores únicos del mapa como resultado final
-    const resultProducts = [...uniqueProducts.values()];
+    // Filtrar los productos nulos si es necesario (productos no encontrados)
+    const filteredProducts = resultProducts.filter(
+      (product) => product !== null
+    );
 
-    return res.status(200).json(resultProducts);
+    return res.status(200).json(filteredProducts);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
