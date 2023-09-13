@@ -17,7 +17,7 @@ const getCart = async (req, res) => {
     // Buscar todos los productos en el carrito del usuario con sus cantidades y tallas
     const cartProducts = await Cart.findAll({
       where: { userId },
-      attributes: ["productId", "quantity", "sizeId"], // Incluye la cantidad y el SizeId en la selección
+      attributes: ["productId", "quantity", "sizeId"],
     });
 
     if (!cartProducts || cartProducts.length === 0) {
@@ -27,38 +27,52 @@ const getCart = async (req, res) => {
     // Obtener los IDs de los productos en el carrito
     const productIds = cartProducts.map((cartProduct) => cartProduct.productId);
 
-    // Obtener los SizeIds de los productos en el carrito
-    const sizeIds = cartProducts.map((cartProduct) => cartProduct.sizeId);
-
     // Buscar los detalles de los productos en el carrito
     const cartProductsDetails = await Product.findAll({
       where: { id: productIds },
     });
 
-    // Obtener la información de Stock para los productos en el carrito
-    const stockInfo = await Stock.findAll({
-      where: { ProductId: productIds, SizeId: sizeIds }, // Filtrar por ProductId y SizeId
-    });
+    // Crear un mapa para almacenar los productos únicos y sus tallas correspondientes
+    const uniqueProducts = new Map();
 
-    // Crear un objeto que mapee el productId al stock correspondiente
-    const stockMap = {};
-    stockInfo.forEach((stock) => {
-      stockMap[stock.ProductId] = stock.quantity;
-    });
-
-    // Agregar las propiedades "cantidad", "sizeId" y "stock" a los productos según la información en el carrito
+    // Iterar sobre los productos en el carrito y asignar las tallas
     cartProductsDetails.forEach((product) => {
-      const cartProduct = cartProducts.find(
+      const matchingCartProducts = cartProducts.filter(
         (cartItem) => cartItem.productId === product.id
       );
-      if (cartProduct) {
-        product.dataValues.cantidad = cartProduct.quantity;
-        product.dataValues.sizeId = cartProduct.sizeId;
-        product.dataValues.stock = stockMap[product.id]; // Agregar la propiedad "stock"
-      }
+
+      matchingCartProducts.forEach((cartProduct) => {
+        const sizeId = cartProduct.sizeId;
+        const quantity = cartProduct.quantity;
+
+        // Crear una copia del producto para evitar sobrescribirlo
+        const productCopy = { ...product.dataValues };
+
+        // Agregar la cantidad y el stock al producto
+        productCopy.cantidad = quantity;
+        productCopy.sizeId = sizeId;
+
+        // Supongamos que tienes un modelo de Stock con una propiedad `quantity`
+        const stockInfo = Stock.findOne({
+          where: { ProductId: product.id, SizeId: sizeId },
+        });
+
+        if (stockInfo) {
+          productCopy.stock = stockInfo.quantity;
+        } else {
+          productCopy.stock = 0; // Otra acción en caso de que no haya stock
+        }
+
+        // Almacenar el producto único en el mapa usando una clave única (por ejemplo, productId y sizeId concatenados)
+        const uniqueKey = `${product.id}_${sizeId}`;
+        uniqueProducts.set(uniqueKey, productCopy);
+      });
     });
 
-    return res.status(200).json(cartProductsDetails);
+    // Obtener los valores únicos del mapa como resultado final
+    const resultProducts = [...uniqueProducts.values()];
+
+    return res.status(200).json(resultProducts);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
