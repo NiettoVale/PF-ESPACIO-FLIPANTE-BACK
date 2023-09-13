@@ -1,10 +1,9 @@
-const { User, Product } = require("../../database");
+const { Review, User, Product } = require("../../database");
 
-const postFavorites = async (req, res) => {
+const postReview = async (req, res) => {
   try {
-    const userId = parseInt(req.params.userId, 10);
-    const productId = parseInt(req.params.productId, 10);
-
+    const { userId, productId } = req.params;
+    const { rating, comment } = req.body;
     if (!userId || !productId) {
       return res
         .status(400)
@@ -13,22 +12,20 @@ const postFavorites = async (req, res) => {
 
     const user = await User.findByPk(userId);
     const product = await Product.findByPk(productId);
-
     if (!user || !product) {
       return res
         .status(404)
         .json({ message: "Usuario o producto no encontrado." });
     }
+    const review = await Review.create({ rating, comment });
+    await review.setUser(user);
 
-    // Crea un registro en la tabla FavoriteItem para establecer la relación
-    await user.addProduct(product);
+    await review.setProduct(product);
 
-    return res
-      .status(200)
-      .json({ message: "Producto marcado como favorito con éxito." });
+    return res.status(200).json({ message: "Review creada con éxito." });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = postFavorites;
+module.exports = postReview;

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const server = require("./src/app");
 const { PORT } = process.env || 3001;
-const { connect } = require("./src/DataBase");
+const { connect } = require("./src/database");
 
 connect.sync({ force: false }).then(() => {
   console.log("Conexión con la base de datos exitosa");

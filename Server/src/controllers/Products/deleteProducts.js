@@ -1,4 +1,4 @@
-const { Product } = require("../../DataBase");
+const { Product } = require("../../database");
 
 const deleteProduct = async (req, res) => {
   try {
@@ -7,7 +7,7 @@ const deleteProduct = async (req, res) => {
     const deleteProduct = await Product.findByPk(id);
 
     if (deleteProduct) {
-      deleteProduct.delete = true;
+      deleteProduct.deleted = true;
     }
 
     if (deleteProduct.changed()) {

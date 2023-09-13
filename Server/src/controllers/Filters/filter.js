@@ -1,4 +1,4 @@
-const { Product, Size } = require("../../DataBase");
+const { Product, Size } = require("../../database");
 
 const filter = async (req, res) => {
   try {

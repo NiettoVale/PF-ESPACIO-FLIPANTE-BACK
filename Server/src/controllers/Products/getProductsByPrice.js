@@ -1,9 +1,12 @@
-const { Product } = require("../../DataBase");
+const { Product } = require("../../database");
 const { Sequelize } = require("sequelize");
 
 const getProductByPrice = async (req, res) => {
   try {
-    const { desde, hasta,} = req.params;
+
+    const { desde, hasta } = req.params;
+
+
     console.log(`Desde: ${desde}, Hasta: ${hasta}`);
 
     const productsInRange = await Product.findAll({
@@ -15,12 +18,10 @@ const getProductByPrice = async (req, res) => {
     });
 
     if (!productsInRange || productsInRange.length === 0) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "No se encontraron productos en el rango de precios especificado",
-        });
+      return res.status(400).json({
+        error:
+          "No se encontraron productos en el rango de precios especificado",
+      });
     }
 
     return res.status(200).json(productsInRange);

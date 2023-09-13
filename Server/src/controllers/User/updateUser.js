@@ -1,11 +1,10 @@
-const { User } = require("../../DataBase");
+const { User } = require("../../database");
 
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, phone, address, dni, imageProfile } = req.body;
+    const { name, phone, address, dni, imageProfile, deleted } = req.body;
     let DNI = dni;
-    console.log(imageProfile);
 
     const updateUser = await User.findByPk(id);
 
@@ -32,7 +31,10 @@ const updateUser = async (req, res) => {
     ) {
       updateUser.imageProfile = imageProfile;
     }
-
+    console.log("soy elimideletednado", deleted);
+    if (deleted !== undefined && deleted !== "") {
+      updateUser.deleted = deleted;
+    }
     if (updateUser.changed()) {
       await updateUser.save();
       return res.status(200).json({ message: "Usuario actualizado con exito" });

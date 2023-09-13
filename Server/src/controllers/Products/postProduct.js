@@ -1,4 +1,4 @@
-const { Product, Size, Stock } = require("../../DataBase");
+const { Product, Size, Stock } = require("../../database");
 const products = require("./arrayProducts");
 
 // Función para crear un producto y gestionar las tallas y el stock

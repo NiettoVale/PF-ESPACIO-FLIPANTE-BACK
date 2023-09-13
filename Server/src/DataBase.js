@@ -7,7 +7,11 @@ const UserModel = require("./models/User");
 const FavoriteModel = require("./models/Favorite");
 const CartModel = require("./models/Cart");
 const StockModel = require("./models/Stock");
+
 const OrderModel = require("./models/Order");
+const ReviewModel = require("./models/Review");
+const SalesHistoryModel = require("./models/SalesHistory");
+
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
@@ -25,8 +29,12 @@ FavoriteModel(sequelize);
 CartModel(sequelize);
 StockModel(sequelize);
 OrderModel(sequelize);
+ReviewModel(sequelize);
+SalesHistoryModel(sequelize);
 
-const { Product, Size, User, Cart, Stock } = sequelize.models;
+const { Product, Size, User, Cart, Stock, Review } = sequelize.models;
+
+
 
 // Configurar relaciones
 Product.belongsToMany(Size, { through: Stock });
@@ -34,6 +42,12 @@ Size.belongsToMany(Product, { through: Stock });
 
 User.belongsToMany(Product, { through: "FavoriteItem" });
 Product.belongsToMany(User, { through: "FavoriteItem" });
+
+User.hasMany(Review);
+Review.belongsTo(User);
+
+Product.hasMany(Review);
+Review.belongsTo(Product);
 
 module.exports = {
   ...sequelize.models,
