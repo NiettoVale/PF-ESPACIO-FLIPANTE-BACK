@@ -37,12 +37,17 @@ const postFavorite = require("./routes/Favorite_Routes/postFavorites.routes");
 const getFavorites = require("./routes/Favorite_Routes/getFavorite.routes");
 const deleteFav = require("./routes/Favorite_Routes/deleteFavorite.routes");
 
-// Ruta para Cart/ Order :
+// Ruta para Cart :
 const postCart = require("./routes/Cart_Routes/postCart.routes");
 const getCart = require("./routes/Cart_Routes/getCart.routes");
-const deleteCart = require("./routes/Cart_Routes/deleteCart.routes");
 const deleteAllCart = require("./routes/Cart_Routes/deleteAllCart.routes");
+const deleteAllProducts = require("./routes/Cart_Routes/deleteAllProducts.routes");
+const deleteProduct = require("./routes/Cart_Routes/deleteProduct.routes");
+
+// Order
 const addOrder = require("./routes/Review_Routes/updateReview.routes");
+const getAllOrders = require("./routes/Review_Routes/updateReview.routes");
+const getUserOrder = require("./routes/Review_Routes/updateReview.routes");
 
 //Rutas para las reviews:
 const postReview = require("./routes/Review_Routes/postReview.routes");
@@ -99,12 +104,17 @@ server.use("/", postFavorite);
 server.use("/", getFavorites);
 server.use("/", deleteFav);
 
-// Rutas Cart / Order
+// Rutas Cart
 server.use("/", postCart);
 server.use("/", getCart);
-server.use("/", deleteCart);
 server.use("/", deleteAllCart);
+server.use("/", deleteAllProducts);
+server.use("/", deleteProduct);
+
+// Order
 server.use("/", addOrder);
+server.use("/", getAllOrders);
+server.use("/", getUserOrder);
 
 server.use("/", updatePassword);
 

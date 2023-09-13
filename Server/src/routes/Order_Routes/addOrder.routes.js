@@ -1,6 +1,6 @@
 const express = require("express");
-const addOrder = require("../../controllers/Order/addOrder");
 const router = express.Router();
+const addOrder = require("../../controllers/Order/addOrder");
 
 router.post("/order", addOrder);
 
