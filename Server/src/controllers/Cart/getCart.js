@@ -22,7 +22,7 @@ const getCart = async (req, res) => {
     });
 
     if (!cartProducts || cartProducts.length === 0) {
-      return res.status(404).json([]);
+      return res.status(200).json([]);
     }
 
     // Usar Promise.all para manejar las promesas de manera paralela

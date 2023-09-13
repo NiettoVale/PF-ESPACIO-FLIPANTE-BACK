@@ -10,6 +10,7 @@ const StockModel = require("./models/Stock");
 const OrderModel = require("./models/Order");
 const ReviewModel = require("./models/Review");
 
+
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
 
@@ -18,7 +19,7 @@ const sequelize = new Sequelize(
   }
 );
 
-// Inicializar modelos
+// Inicializar modeloss
 ProductModel(sequelize);
 SizeModel(sequelize);
 UserModel(sequelize);

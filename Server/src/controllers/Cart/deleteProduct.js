@@ -1,14 +1,15 @@
 const { User, Product, Cart } = require("../../DataBase");
 
-const deleteFromCart = async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
     const userId = parseInt(req.params.userId, 10);
     const productId = parseInt(req.params.productId, 10);
+    const sizeId = parseInt(req.params.sizeId, 10);
 
-    if (!userId || !productId) {
+    if (!userId || !productId || !sizeId) {
       return res
         .status(400)
-        .json({ message: "Falta el ID de usuario o producto." });
+        .json({ message: "Falta el ID de usuario, producto o tamaño." });
     }
 
     const user = await User.findByPk(userId);
@@ -22,9 +23,9 @@ const deleteFromCart = async (req, res) => {
       return res.status(404).json({ message: "Producto no encontrado." });
     }
 
-    // Buscar el registro en Cart para este usuario y producto
+    // Buscar el registro en Cart para este usuario, producto y tamaño
     const cartItem = await Cart.findOne({
-      where: { userId, productId },
+      where: { userId, productId, sizeId },
     });
 
     if (!cartItem) {
@@ -52,4 +53,4 @@ const deleteFromCart = async (req, res) => {
   }
 };
 
-module.exports = deleteFromCart;
+module.exports = deleteProduct;

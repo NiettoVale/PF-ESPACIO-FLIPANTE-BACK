@@ -40,8 +40,10 @@ const deleteFav = require("./routes/Favorite_Routes/deleteFavorite.routes");
 // Ruta para Cart/SaleHistory:
 const postCart = require("./routes/Cart_Routes/postCart.routes");
 const getCart = require("./routes/Cart_Routes/getCart.routes");
-const deleteCart = require("./routes/Cart_Routes/deleteCart.routes");
+const deleteProduct = require("./routes/Cart_Routes/deleteProduct.routes");
 const deleteAllCart = require("./routes/Cart_Routes/deleteAllCart.routes");
+const deleteAllProduct = require("./routes/Cart_Routes/deleteAllProduct.routes");
+
 
 
 //Rutas para las reviews:
@@ -49,6 +51,7 @@ const postReview = require("./routes/Review_Routes/postReview.routes");
 const getReviews = require("./routes/Review_Routes/getReview.routes");
 const deleteReview = require("./routes/Review_Routes/deleteReview.routes");
 const updateReview = require("./routes/Review_Routes/updateReview.routes");
+
 
 
 const payment = require("./routes/Cart_Routes/payment.routes");
@@ -106,12 +109,13 @@ server.use("/", deleteFav);
 // Rutas Cart / SalesHistory
 server.use("/", postCart);
 server.use("/", getCart);
-server.use("/", deleteCart);
 server.use("/", deleteAllCart);
+server.use("/", deleteProduct);
+server.use("/", deleteAllProduct);
 server.use("/", updatePassword);
+
 
 server.use("/", payment);
 server.use("/", updatePassword);
-
 
 module.exports = server; // Exportar el servidor configurado
