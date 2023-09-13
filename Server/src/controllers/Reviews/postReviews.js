@@ -1,4 +1,4 @@
-const { Review, User, Product } = require("../../database");
+const { Review, User, Product } = require("../../DataBase"");
 
 const postReview = async (req, res) => {
   try {
