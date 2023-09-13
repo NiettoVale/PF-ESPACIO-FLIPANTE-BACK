@@ -1,9 +1,12 @@
-const { Product, Size, Stock } = require("../../DataBase");
+const { Product, Size, Stock } = require("../../database");
 
 const getProducts = async (req, res) => {
   try {
     // Obtén todos los productos de la tabla "Product" incluyendo las relaciones con "Size" y "Stock"
     const products = await Product.findAll({
+      where: {
+        deleted: false,
+      },
       include: [
         {
           model: Size,

@@ -1,15 +1,16 @@
-const { Product } = require("../../DataBase");
+const { Product } = require("../../database");
 
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params; // Suponiendo que estás pasando el ID del producto a actualizar en los parámetros de la URL.
-    const { name, gender, category, mainMaterial, images, price } = req.body;
+    const { name, gender, category, mainMaterial, images, price, deleted } =
+      req.body;
 
     // Verifica si el producto existe en la base de datos
     const existingProduct = await Product.findByPk(id);
 
     if (!existingProduct) {
-      return res.status(404).json({ error: "Producto no encontrado." });
+      res.status(404).json({ error: "Producto no encontrado." });
     }
 
     if (name !== undefined && name !== "") {
@@ -33,8 +34,13 @@ const updateProduct = async (req, res) => {
     }
 
     if (price !== undefined && price !== "") {
-      existingProduct.gender = gender;
+      existingProduct.price = price;
     }
+    console.log(deleted);
+    if (deleted !== undefined && deleted !== "") {
+      existingProduct.deleted = deleted;
+    }
+    console.log(existingProduct);
 
     if (existingProduct.changed()) {
       await existingProduct.save();

@@ -1,4 +1,4 @@
-const { User } = require("../../DataBase");
+const { User } = require("../../database");
 
 const getUserByMail = async (req, res) => {
   try {

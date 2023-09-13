@@ -1,4 +1,4 @@
-const { Product } = require("../../DataBase");
+const { Product } = require("../../database");
 //const products = require("./arrayProducts");
 
 const getGender = async (_req, res) => {

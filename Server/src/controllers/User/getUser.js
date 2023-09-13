@@ -1,8 +1,13 @@
-const { User } = require("../../DataBase");
+const { User } = require("../../database");
 
 const getUsers = async (_req, res) => {
   try {
-    const users = await User.findAll({ order: [["id", "ASC"]] });
+    const users = await User.findAll({
+      where: {
+        deleted: false,
+      },
+      order: [["id", "ASC"]],
+    });
 
     return res.status(200).json(users);
   } catch (error) {
