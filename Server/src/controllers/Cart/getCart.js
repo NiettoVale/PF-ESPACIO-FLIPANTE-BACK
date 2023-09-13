@@ -1,4 +1,5 @@
-const { User, Product, Cart } = require("../../database");
+
+const { User, Product, Cart, Stock } = require("../../DataBase");
 
 const getCart = async (req, res) => {
   try {
@@ -14,10 +15,10 @@ const getCart = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado." });
     }
 
-    // Buscar todos los productos en el carrito del usuario con sus cantidades
+    // Buscar todos los productos en el carrito del usuario con sus cantidades y tallas
     const cartProducts = await Cart.findAll({
       where: { userId },
-      attributes: ["productId", "quantity"], // Incluye la cantidad en la selección
+      attributes: ["productId", "quantity", "sizeId"], // Incluye la cantidad y el SizeId en la selección
     });
 
     if (!cartProducts || cartProducts.length === 0) {
@@ -27,18 +28,34 @@ const getCart = async (req, res) => {
     // Obtener los IDs de los productos en el carrito
     const productIds = cartProducts.map((cartProduct) => cartProduct.productId);
 
+    // Obtener los SizeIds de los productos en el carrito
+    const sizeIds = cartProducts.map((cartProduct) => cartProduct.sizeId);
+
     // Buscar los detalles de los productos en el carrito
     const cartProductsDetails = await Product.findAll({
       where: { id: productIds },
     });
 
-    // Agregar la propiedad "cantidad" a los productos según la cantidad en el carrito
+    // Obtener la información de Stock para los productos en el carrito
+    const stockInfo = await Stock.findAll({
+      where: { ProductId: productIds, SizeId: sizeIds }, // Filtrar por ProductId y SizeId
+    });
+
+    // Crear un objeto que mapee el productId al stock correspondiente
+    const stockMap = {};
+    stockInfo.forEach((stock) => {
+      stockMap[stock.ProductId] = stock.quantity;
+    });
+
+    // Agregar las propiedades "cantidad", "sizeId" y "stock" a los productos según la información en el carrito
     cartProductsDetails.forEach((product) => {
       const cartProduct = cartProducts.find(
         (cartItem) => cartItem.productId === product.id
       );
       if (cartProduct) {
         product.dataValues.cantidad = cartProduct.quantity;
+        product.dataValues.sizeId = cartProduct.sizeId;
+        product.dataValues.stock = stockMap[product.id]; // Agregar la propiedad "stock"
       }
     });
 
