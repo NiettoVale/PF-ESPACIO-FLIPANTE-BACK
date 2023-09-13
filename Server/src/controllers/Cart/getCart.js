@@ -17,48 +17,59 @@ const getCart = async (req, res) => {
     // Buscar todos los productos en el carrito del usuario con sus cantidades y tallas
     const cartProducts = await Cart.findAll({
       where: { userId },
-      attributes: ["productId", "quantity", "sizeId"], // Incluye la cantidad y el SizeId en la selección
+      attributes: ["id", "productId", "quantity", "sizeId"], // Incluye el ID del carrito
     });
 
     if (!cartProducts || cartProducts.length === 0) {
-      return res.status(404).json([]);
+      return res.status(200).json([]);
     }
 
-    // Obtener los IDs de los productos en el carrito
-    const productIds = cartProducts.map((cartProduct) => cartProduct.productId);
+    // Usar Promise.all para manejar las promesas de manera paralela
+    const resultProducts = await Promise.all(
+      cartProducts.map(async (cartProduct) => {
+        const productId = cartProduct.productId;
+        const sizeId = cartProduct.sizeId;
+        const quantity = cartProduct.quantity;
 
-    // Obtener los SizeIds de los productos en el carrito
-    const sizeIds = cartProducts.map((cartProduct) => cartProduct.sizeId);
+        // Buscar el producto correspondiente en la base de datos
+        const product = await Product.findByPk(productId);
 
-    // Buscar los detalles de los productos en el carrito
-    const cartProductsDetails = await Product.findAll({
-      where: { id: productIds },
-    });
+        if (!product) {
+          return res.status(404).json({ message: "Producto no encontrado." }); // Manejo de producto no encontrado, puedes personalizar esto
+        }
 
-    // Obtener la información de Stock para los productos en el carrito
-    const stockInfo = await Stock.findAll({
-      where: { ProductId: productIds, SizeId: sizeIds }, // Filtrar por ProductId y SizeId
-    });
+        // Crear una copia del producto para evitar sobrescribirlo
+        const productCopy = { ...product.dataValues };
 
-    // Crear un objeto que mapee el productId al stock correspondiente
-    const stockMap = {};
-    stockInfo.forEach((stock) => {
-      stockMap[stock.ProductId] = stock.quantity;
-    });
+        // Agregar la cantidad y el stock al producto
+        productCopy.cantidad = quantity;
+        productCopy.sizeId = sizeId;
+        productCopy.productId = productId;
 
-    // Agregar las propiedades "cantidad", "sizeId" y "stock" a los productos según la información en el carrito
-    cartProductsDetails.forEach((product) => {
-      const cartProduct = cartProducts.find(
-        (cartItem) => cartItem.productId === product.id
-      );
-      if (cartProduct) {
-        product.dataValues.cantidad = cartProduct.quantity;
-        product.dataValues.sizeId = cartProduct.sizeId;
-        product.dataValues.stock = stockMap[product.id]; // Agregar la propiedad "stock"
-      }
-    });
+        // Agregar el ID del carrito al producto
+        productCopy.id = cartProduct.id;
 
-    return res.status(200).json(cartProductsDetails);
+        // Buscar la cantidad en stock en la tabla Stock
+        const stockInfo = await Stock.findOne({
+          where: { ProductId: productId, SizeId: sizeId },
+        });
+
+        if (stockInfo) {
+          productCopy.stock = stockInfo.quantity;
+        } else {
+          productCopy.stock = 0; // Otra acción en caso de que no haya stock
+        }
+
+        return productCopy;
+      })
+    );
+
+    // Filtrar los productos nulos si es necesario (productos no encontrados)
+    const filteredProducts = resultProducts.filter(
+      (product) => product !== null
+    );
+
+    return res.status(200).json(filteredProducts);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
