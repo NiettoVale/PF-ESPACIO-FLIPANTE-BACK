@@ -1,4 +1,4 @@
-const { User } = require("../../database");
+const { User } = require("../../DataBase");
 const { encrypt } = require("./handlers/handleCrypt");
 
 const registerUser = async (req, res) => {

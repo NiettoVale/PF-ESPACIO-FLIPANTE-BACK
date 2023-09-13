@@ -1,4 +1,4 @@
-const { User } = require("../../database");
+const { User } = require("../../DataBase");
 const { encrypt, compare } = require("./handlers/handleCrypt");
 
 const updatePassword = async (req, res) => {

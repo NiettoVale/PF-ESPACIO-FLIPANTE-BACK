@@ -1,4 +1,4 @@
-const { User, Product, Cart } = require("../../database");
+const { User, Product, Cart } = require("../../DataBase");
 
 const deleteFromCart = async (req, res) => {
   try {
