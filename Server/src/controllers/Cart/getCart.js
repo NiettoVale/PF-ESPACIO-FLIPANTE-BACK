@@ -35,7 +35,7 @@ const getCart = async (req, res) => {
         const product = await Product.findByPk(productId);
 
         if (!product) {
-          return null; // Manejo de producto no encontrado, puedes personalizar esto
+          return res.status(404).json({ message: "Producto no encontrado." }); // Manejo de producto no encontrado, puedes personalizar esto
         }
 
         // Crear una copia del producto para evitar sobrescribirlo
@@ -44,6 +44,7 @@ const getCart = async (req, res) => {
         // Agregar la cantidad y el stock al producto
         productCopy.cantidad = quantity;
         productCopy.sizeId = sizeId;
+        productCopy.productId = productId;
 
         // Agregar el ID del carrito al producto
         productCopy.id = cartProduct.id;
