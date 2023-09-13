@@ -29,7 +29,7 @@ const deleteFav = async (req, res) => {
     if (!favoritesFiltered) {
       return res.status(403).json({ message: "No se encontro el producto" });
     }
-    return res.status(200).json({message: "Producto eliminado"});
+    return res.status(200).json({ message: "Producto eliminado" });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

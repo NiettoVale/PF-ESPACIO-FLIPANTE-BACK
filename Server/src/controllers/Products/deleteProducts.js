@@ -7,7 +7,7 @@ const deleteProduct = async (req, res) => {
     const deleteProduct = await Product.findByPk(id);
 
     if (deleteProduct) {
-      deleteProduct.delete = true;
+      deleteProduct.deleted = true;
     }
 
     if (deleteProduct.changed()) {

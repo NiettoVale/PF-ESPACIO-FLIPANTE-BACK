@@ -34,7 +34,6 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.NOW, // Usa la fecha y hora actual como valor predeterminado
       },
     },
-
     { timestamps: false }
   );
 };
