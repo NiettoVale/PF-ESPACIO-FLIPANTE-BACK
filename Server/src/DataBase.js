@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
   }
 );
 
-// Inicializar modelos
+// Inicializar modeloss
 ProductModel(sequelize);
 SizeModel(sequelize);
 UserModel(sequelize);
