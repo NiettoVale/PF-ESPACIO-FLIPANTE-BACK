@@ -1,4 +1,4 @@
-const { Review } = require("../../DataBase"");
+const { Review } = require("../../DataBase");
 
 const updateReview = async (req, res) => {
   try {
