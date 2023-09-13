@@ -45,7 +45,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      eliminado: {
+      deleted: {
         // Agrega este campo
         type: DataTypes.BOOLEAN,
         defaultValue: false, // Por defecto, no está eliminado

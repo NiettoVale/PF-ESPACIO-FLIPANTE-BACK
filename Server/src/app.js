@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const server = express();
+
 // Rutas para el usuario:
 const login = require("./routes/Users_Routes/login.routes"); // Ruta para iniciar sesión de usuario"
 const register = require("./routes/Users_Routes/register.routes"); // Ruta para registrar un usuario
@@ -12,6 +13,7 @@ const getUserByMail = require("./routes/Users_Routes/getUserByMail.routes");
 const getUserByName = require("./routes/Users_Routes/getUserByName.routes");
 const registerGoogle = require("./routes/Users_Routes/registerGoogle.routes");
 const updatePassword = require("./routes/Users_Routes/changePassword.routes");
+const getUserDeleted = require("./routes/Users_Routes/getUsersDeleteded");
 
 // Rutas para las prendas:
 const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ruta para obtener información de prendas
@@ -21,6 +23,7 @@ const updateProducts = require("./routes/Products_Routes/updateProduct.routes");
 const postSize = require("./routes/Products_Routes/Size/postSize.routes");
 const getSize = require("./routes/Products_Routes/Size/getSize.routes");
 const getProductByPrice = require("./routes/Products_Routes/getProductByPrice.routes");
+const getProdcutsDeleted = require("./routes/Products_Routes/getProductsDeleted.routes");
 
 // Rutas para Detalles y Filtros
 const getGender = require("./routes/Products_Routes/getGender.routes");
@@ -40,6 +43,12 @@ const getCart = require("./routes/Cart_Routes/getCart.routes");
 const deleteCart = require("./routes/Cart_Routes/deleteCart.routes");
 const deleteAllCart = require("./routes/Cart_Routes/deleteAllCart.routes");
 
+//Rutas para las reviews:
+const postReview = require("./routes/Review_Routes/postReview.routes");
+const getReviews = require("./routes/Review_Routes/getReview.routes");
+const deleteReview = require("./routes/Review_Routes/deleteReview.routes");
+const updateReview = require("./routes/Review_Routes/updateReview.routes");
+
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
 server.use(cors()); // Habilita CORS para permitir solicitudes desde otros dominios
@@ -51,9 +60,11 @@ server.use("/", register); // Ruta para registrar un usuario
 server.use("/", deleteUser); // Ruta para eliminar un usuario
 server.use("/", updataUser); // Ruta para actualizar información de usuario
 server.use("/", getUser); // Ruta para obtener información de usuario
+server.use("/", getUserDeleted);
 server.use("/", getUserByName);
 server.use("/", registerGoogle); // Ruta para registrar un usuario
 server.use("/", getUserByMail);
+server.use("/", getProdcutsDeleted);
 
 server.use("/", getProducts); // Ruta para obtener información de prendas
 server.use("/", postProducts); // Ruta para crear una nueva prenda
@@ -62,6 +73,12 @@ server.use("/", updateProducts); // Ruta para actualizar información de prendas
 server.use("/", getProductByPrice);
 
 server.use("/", mercadoPago); //Ruta para Mercado pago
+
+//Rutas para las reviews:
+server.use("/", postReview);
+server.use("/", getReviews);
+server.use("/", deleteReview);
+server.use("/", updateReview);
 
 // Rutas para el talle:
 server.use("/", postSize);

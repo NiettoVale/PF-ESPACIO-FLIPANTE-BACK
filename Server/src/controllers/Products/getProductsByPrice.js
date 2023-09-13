@@ -1,4 +1,4 @@
-const { Product } = require("../../DataBase");
+const { Product } = require("../../database");
 const { Sequelize } = require("sequelize");
 
 const getProductByPrice = async (req, res) => {

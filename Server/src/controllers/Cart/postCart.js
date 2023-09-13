@@ -1,4 +1,4 @@
-const { User, Product, Cart } = require("../../DataBase");
+const { User, Product, Cart } = require("../../database");
 
 const postCart = async (req, res) => {
   try {
