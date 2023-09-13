@@ -63,7 +63,7 @@ const getCart = async (req, res) => {
           productCopy.stock = 0; // Otra acción en caso de que no haya stock
         }
 
-        // Almacenar el producto único en el mapa usando una clave única (por ejemplo, productId y sizeId concatenados)
+        // Almacenar el producto único en el mapa usando una clave única -por ejemplo, productId y sizeId concatenados-
         const uniqueKey = `${product.id}_${sizeId}`;
         uniqueProducts.set(uniqueKey, productCopy);
       });
