@@ -7,6 +7,8 @@ const UserModel = require("./models/User");
 const FavoriteModel = require("./models/Favorite");
 const CartModel = require("./models/Cart");
 const StockModel = require("./models/Stock");
+
+const OrderModel = require("./models/Order");
 const ReviewModel = require("./models/Review");
 const SalesHistoryModel = require("./models/SalesHistory");
 
@@ -26,6 +28,7 @@ UserModel(sequelize);
 FavoriteModel(sequelize);
 CartModel(sequelize);
 StockModel(sequelize);
+OrderModel(sequelize);
 ReviewModel(sequelize);
 SalesHistoryModel(sequelize);
 
