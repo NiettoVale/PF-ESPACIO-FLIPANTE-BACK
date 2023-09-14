@@ -42,16 +42,12 @@ const postCart = require("./routes/Cart_Routes/postCart.routes");
 const getCart = require("./routes/Cart_Routes/getCart.routes");
 const deleteProduct = require("./routes/Cart_Routes/deleteProduct.routes");
 const deleteAllCart = require("./routes/Cart_Routes/deleteAllCart.routes");
-const deleteAllProduct = require("./routes/Cart_Routes/deleteAllProduct.routes");
-
-const deleteAllCart = require("./routes/Cart_Routes/deleteAllCart.routes");
 const deleteAllProducts = require("./routes/Cart_Routes/deleteAllProducts.routes");
-const deleteProduct = require("./routes/Cart_Routes/deleteProduct.routes");
 
 // Order
-const addOrder = require("./routes/Review_Routes/updateReview.routes");
-const getAllOrders = require("./routes/Review_Routes/updateReview.routes");
-const getUserOrder = require("./routes/Review_Routes/updateReview.routes");
+const addOrder = require("./routes/Order_Routes/addOrder.routes");
+const getAllOrders = require("./routes/Order_Routes/getAllOrders.routes");
+const getUserOrder = require("./routes/Order_Routes/getUserOrder.routes");
 
 //Rutas para las reviews:
 const postReview = require("./routes/Review_Routes/postReview.routes");
@@ -59,9 +55,6 @@ const getReviews = require("./routes/Review_Routes/getReview.routes");
 const deleteReview = require("./routes/Review_Routes/deleteReview.routes");
 const updateReview = require("./routes/Review_Routes/updateReview.routes");
 const postMultipleReviews = require("./routes/Review_Routes/postMultipleReviews.routes");
-
-const payment = require("./routes/Cart_Routes/payment.routes");
-
 
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
@@ -117,11 +110,9 @@ server.use("/", deleteFav);
 server.use("/", postCart);
 server.use("/", getCart);
 server.use("/", deleteAllCart);
-server.use("/", deleteProduct);
-server.use("/", deleteAllProduct);
-server.use("/", updatePassword);
 server.use("/", deleteAllProducts);
 server.use("/", deleteProduct);
+server.use("/", updatePassword);
 
 // Order
 server.use("/", addOrder);

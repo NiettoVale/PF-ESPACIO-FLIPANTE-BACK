@@ -1,4 +1,4 @@
-const { Order } = require("../../DataBase");
+const { Order, User } = require("../../DataBase");
 
 const addOrder = async (req, res) => {
   try {
@@ -23,9 +23,8 @@ const addOrder = async (req, res) => {
       purchaseDate,
       payment: false, // Establece el valor de payment en false
     });
-    return res.status(201).json({ message: "Orden creada con éxito." });
+    return res.status(201).json({ message: "Orden creada con éxito.", error });
   } catch (error) {
-    console.error("Error en el controlador de addOrder:", error);
     return res.status(500).json({ message: "Error interno del servidor." });
   }
 };
