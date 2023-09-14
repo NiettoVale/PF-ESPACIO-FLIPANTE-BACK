@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
         .status(200)
         .json({ message: "Usuarios ficticios cargados con éxito" });
     } else {
-      const { name, email, password } = req.body;
+      const { name, email, password, isSuperuser } = req.body;
 
       if (!name || !email || !password) {
         return res
@@ -52,11 +52,19 @@ const registerUser = async (req, res) => {
       // Hashea la contraseña utilizando tu handler de encriptación
       const hashedPassword = await encrypt(password);
 
-      await User.create({
+      // Crear un objeto con las propiedades para el nuevo usuario
+      const newUser = {
         name,
         email,
         password: hashedPassword,
-      });
+      };
+
+      // Si se proporciona la propiedad isSuperuser en el cuerpo de la solicitud, asignarla al nuevo usuario
+      if (isSuperuser !== undefined) {
+        newUser.isSuperuser = isSuperuser;
+      }
+
+      await User.create(newUser);
 
       return res.status(200).json({ message: "Usuario creado con éxito!!!" });
     }
