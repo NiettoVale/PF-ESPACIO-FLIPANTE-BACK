@@ -33,6 +33,11 @@ module.exports = (sequelize) => {
         allowNull: false, // Asegúrate de que siempre haya una fecha y hora
         defaultValue: DataTypes.NOW, // Usa la fecha y hora actual como valor predeterminado
       },
+      payment: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false, // Por defecto, la compra no está confirmada
+      },
     },
     { timestamps: false }
   );
