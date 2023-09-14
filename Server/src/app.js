@@ -44,15 +44,12 @@ const deleteProduct = require("./routes/Cart_Routes/deleteProduct.routes");
 const deleteAllCart = require("./routes/Cart_Routes/deleteAllCart.routes");
 const deleteAllProduct = require("./routes/Cart_Routes/deleteAllProduct.routes");
 
-
-
 //Rutas para las reviews:
 const postReview = require("./routes/Review_Routes/postReview.routes");
 const getReviews = require("./routes/Review_Routes/getReview.routes");
 const deleteReview = require("./routes/Review_Routes/deleteReview.routes");
 const updateReview = require("./routes/Review_Routes/updateReview.routes");
-
-
+const postMultipleReviews = require("./routes/Review_Routes/postMultipleReviews.routes");
 
 const payment = require("./routes/Cart_Routes/payment.routes");
 
@@ -73,7 +70,6 @@ server.use("/", registerGoogle); // Ruta para registrar un usuario
 server.use("/", getUserByMail);
 server.use("/", getProdcutsDeleted);
 
-
 server.use("/", getProducts); // Ruta para obtener información de prendas
 server.use("/", postProducts); // Ruta para crear una nueva prenda
 server.use("/", deleteProducts); // Ruta para eliminar una prenda
@@ -87,6 +83,7 @@ server.use("/", postReview);
 server.use("/", getReviews);
 server.use("/", deleteReview);
 server.use("/", updateReview);
+server.use("/", postMultipleReviews);
 
 // Rutas para el talle:
 server.use("/", postSize);
@@ -113,7 +110,6 @@ server.use("/", deleteAllCart);
 server.use("/", deleteProduct);
 server.use("/", deleteAllProduct);
 server.use("/", updatePassword);
-
 
 server.use("/", payment);
 server.use("/", updatePassword);
