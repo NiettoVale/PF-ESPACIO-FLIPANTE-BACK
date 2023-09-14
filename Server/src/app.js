@@ -46,9 +46,11 @@ const deleteAllProduct = require("./routes/Cart_Routes/deleteAllCart.routes");
 const deleteAllProducts = require("./routes/Cart_Routes/deleteAllProducts.routes");
 
 // Order
-const addOrder = require("./routes/Review_Routes/updateReview.routes");
-const getAllOrders = require("./routes/Review_Routes/updateReview.routes");
-const getUserOrder = require("./routes/Review_Routes/updateReview.routes");
+const addOrder = require("./routes/Order_Routes/addOrder.routes");
+const getAllOrders = require("./routes/Order_Routes/getAllOrders.routes");
+const getUserOrder = require("./routes/Order_Routes/getUserOrder.routes");
+const deleteOrder = require("./routes/Order_Routes/deleteOrder.routes");
+const paymentOrder = require("./routes/Order_Routes/paymentOrder.routes");
 
 //Rutas para las reviews:
 const postReview = require("./routes/Review_Routes/postReview.routes");
@@ -113,16 +115,16 @@ server.use("/", deleteFav);
 server.use("/", postCart);
 server.use("/", getCart);
 server.use("/", deleteAllCart);
-server.use("/", deleteProduct);
-server.use("/", deleteAllProduct);
-server.use("/", updatePassword);
 server.use("/", deleteAllProducts);
 server.use("/", deleteProduct);
+server.use("/", updatePassword);
 
 // Order
 server.use("/", addOrder);
+server.use("/", deleteOrder);
 server.use("/", getAllOrders);
 server.use("/", getUserOrder);
+server.use("/", paymentOrder);
 
 server.use("/", updatePassword);
 server.use("/", updatePassword);
