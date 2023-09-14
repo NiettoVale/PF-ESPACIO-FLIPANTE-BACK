@@ -1,6 +1,4 @@
-
 const { User, Product, Cart, Stock } = require("../../DataBase");
-
 
 const postCart = async (req, res) => {
   try {

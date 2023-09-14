@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const deleteCart = require("../../controllers/Cart/deleteCart");
+const deleteAllProducts = require("../../controllers/Cart/deleteAllProduct");
 
-router.delete("/:userId/:productId/:sizeId", deleteCart);
+router.delete("/all/:userId/:productId/:sizeId", deleteAllProducts);
 
 module.exports = router;
