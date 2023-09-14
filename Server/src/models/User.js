@@ -45,6 +45,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      isSuperuser: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
+      },
       deleted: {
         // Agrega este campo
         type: DataTypes.BOOLEAN,
