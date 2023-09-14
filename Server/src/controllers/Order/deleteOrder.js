@@ -10,7 +10,7 @@ const deleteOrder = async (req, res) => {
         .json({ message: "Faltan datos necesarios para eliminar la orden." });
     }
 
-    // Busca la orden que coincida con los datos proporcionados
+    // Busca la orden que coincida con los datos proporcionados :)
     const orderToDelete = await Order.findOne({
       where: {
         userId,
@@ -22,12 +22,10 @@ const deleteOrder = async (req, res) => {
     });
 
     if (!orderToDelete) {
-      return res
-        .status(404)
-        .json({
-          message:
-            "No se encontró la orden que coincida con los datos proporcionados.",
-        });
+      return res.status(404).json({
+        message:
+          "No se encontró la orden que coincida con los datos proporcionados.",
+      });
     }
 
     // Elimina la orden encontrada
