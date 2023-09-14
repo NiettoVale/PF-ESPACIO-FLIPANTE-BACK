@@ -1,4 +1,3 @@
-
 const { User, Product, Cart, Stock } = require("../../DataBase");
 
 const getCart = async (req, res) => {
