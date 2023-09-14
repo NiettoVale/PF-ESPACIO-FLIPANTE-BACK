@@ -1,4 +1,4 @@
-const { Review, User, Product } = require("../../database");
+const { Review, User, Product } = require("../../DataBase");
 
 const postReview = async (req, res) => {
   try {
@@ -19,7 +19,6 @@ const postReview = async (req, res) => {
     }
     const review = await Review.create({ rating, comment });
     await review.setUser(user);
-
     await review.setProduct(product);
 
     return res.status(200).json({ message: "Review creada con éxito." });

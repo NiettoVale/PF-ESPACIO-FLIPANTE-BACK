@@ -1,4 +1,4 @@
-const { Size } = require("../../../database");
+const { Size } = require("../../../DataBase");
 const sizesData = require("./arraySize");
 
 const postSizes = async (req, res) => {

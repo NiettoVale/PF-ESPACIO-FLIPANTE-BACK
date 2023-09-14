@@ -7,7 +7,6 @@ const UserModel = require("./models/User");
 const FavoriteModel = require("./models/Favorite");
 const CartModel = require("./models/Cart");
 const StockModel = require("./models/Stock");
-
 const OrderModel = require("./models/Order");
 const ReviewModel = require("./models/Review");
 
@@ -19,7 +18,7 @@ const sequelize = new Sequelize(
   }
 );
 
-// Inicializar modelos
+// Inicializar modeloss
 ProductModel(sequelize);
 SizeModel(sequelize);
 UserModel(sequelize);

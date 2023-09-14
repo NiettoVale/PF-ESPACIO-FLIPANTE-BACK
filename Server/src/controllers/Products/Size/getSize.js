@@ -1,4 +1,4 @@
-const { Size } = require("../../../database");
+const { Size } = require("../../../DataBase");
 
 const getSize = async (_req, res) => {
   try {
