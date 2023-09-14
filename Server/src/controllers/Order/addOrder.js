@@ -18,6 +18,7 @@ const addOrder = async (req, res) => {
     await Order.create({
       userId,
       productId,
+      sizeId,
       quantity,
       totalPrice,
       purchaseDate,
