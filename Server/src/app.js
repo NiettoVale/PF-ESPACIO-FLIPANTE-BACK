@@ -59,6 +59,7 @@ const getReviews = require("./routes/Review_Routes/getReview.routes");
 const deleteReview = require("./routes/Review_Routes/deleteReview.routes");
 const updateReview = require("./routes/Review_Routes/updateReview.routes");
 const postMultipleReviews = require("./routes/Review_Routes/postMultipleReviews.routes");
+const getReviewById = require("./routes/Review_Routes/getReviewById.routes");
 
 // const payment = require("./routes/Cart_Routes/payment.routes");
 
@@ -93,6 +94,7 @@ server.use("/", getReviews);
 server.use("/", deleteReview);
 server.use("/", updateReview);
 server.use("/", postMultipleReviews);
+server.use("/", getReviewById);
 
 // Rutas para el talle:
 server.use("/", postSize);
