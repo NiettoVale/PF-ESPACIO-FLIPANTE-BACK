@@ -51,6 +51,7 @@ const getAllOrders = require("./routes/Order_Routes/getAllOrders.routes");
 const getUserOrder = require("./routes/Order_Routes/getUserOrder.routes");
 const deleteOrder = require("./routes/Order_Routes/deleteOrder.routes");
 const paymentOrder = require("./routes/Order_Routes/paymentOrder.routes");
+const getOrderById = require("./routes/Order_Routes/getOrderById.routes");
 
 //Rutas para las reviews:
 const postReview = require("./routes/Review_Routes/postReview.routes");
@@ -125,6 +126,7 @@ server.use("/", deleteOrder);
 server.use("/", getAllOrders);
 server.use("/", getUserOrder);
 server.use("/", paymentOrder);
+server.use("/", getOrderById);
 
 server.use("/", updatePassword);
 server.use("/", updatePassword);
