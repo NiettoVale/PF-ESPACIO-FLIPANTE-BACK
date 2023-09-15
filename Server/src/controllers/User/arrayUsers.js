@@ -149,12 +149,6 @@ const arrayUsers = [
     email: "cecilia@example.com",
     password: "contraseña30",
   },
-  {
-    name: "admin",
-    email: "fernando.nasso@gmail.com",
-    password: "superadmin",
-    isSuperuser: true 
-  }
 ];
 
 module.exports = arrayUsers;

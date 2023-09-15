@@ -12,7 +12,7 @@ const getUserOrders = async (req, res) => {
 
     return res.status(200).json(userOrders);
   } catch (error) {
-    return res.status(500).json({ message: "Error interno del servidor." });
+    return res.status(500).json({ message: error.message });
   }
 };
 

@@ -17,6 +17,7 @@ const postReview = async (req, res) => {
         .status(404)
         .json({ message: "Usuario o producto no encontrado." });
     }
+
     const review = await Review.create({ rating, comment });
     await review.setUser(user);
     await review.setProduct(product);
