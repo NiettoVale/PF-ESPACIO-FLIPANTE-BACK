@@ -51,6 +51,7 @@ const getAllOrders = require("./routes/Order_Routes/getAllOrders.routes");
 const getUserOrder = require("./routes/Order_Routes/getUserOrder.routes");
 const deleteOrder = require("./routes/Order_Routes/deleteOrder.routes");
 const paymentOrder = require("./routes/Order_Routes/paymentOrder.routes");
+const getOrderById = require("./routes/Order_Routes/getOrderById.routes");
 
 //Rutas para las reviews:
 const postReview = require("./routes/Review_Routes/postReview.routes");
@@ -58,6 +59,7 @@ const getReviews = require("./routes/Review_Routes/getReview.routes");
 const deleteReview = require("./routes/Review_Routes/deleteReview.routes");
 const updateReview = require("./routes/Review_Routes/updateReview.routes");
 const postMultipleReviews = require("./routes/Review_Routes/postMultipleReviews.routes");
+const getReviewById = require("./routes/Review_Routes/getReviewById.routes");
 
 // const payment = require("./routes/Cart_Routes/payment.routes");
 
@@ -92,6 +94,7 @@ server.use("/", getReviews);
 server.use("/", deleteReview);
 server.use("/", updateReview);
 server.use("/", postMultipleReviews);
+server.use("/", getReviewById);
 
 // Rutas para el talle:
 server.use("/", postSize);
@@ -125,6 +128,7 @@ server.use("/", deleteOrder);
 server.use("/", getAllOrders);
 server.use("/", getUserOrder);
 server.use("/", paymentOrder);
+server.use("/", getOrderById);
 
 server.use("/", updatePassword);
 server.use("/", updatePassword);
