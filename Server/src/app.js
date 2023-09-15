@@ -61,7 +61,17 @@ const updateReview = require("./routes/Review_Routes/updateReview.routes");
 const postMultipleReviews = require("./routes/Review_Routes/postMultipleReviews.routes");
 const getReviewById = require("./routes/Review_Routes/getReviewById.routes");
 
+//Rutas para las ofertas:
+const postOffer = require("./routes/Offer_Routes/postOffer.routes");
+const getOffer = require("./routes/Offer_Routes/getOffer.routes");
+const deleteOffer = require("./routes/Offer_Routes/deleteOffer.routes");
+const updateOffer = require("./routes/Offer_Routes/updateOffer.routes");
 // const payment = require("./routes/Cart_Routes/payment.routes");
+
+//Rutas para las visitas:
+
+const postVisit = require("./routes/Visit_Routes/postVisit.routes");
+const getVisit = require("./routes/Visit_Routes/getVisit.routes");
 
 // Middlewares
 server.use(express.json()); // Parsea las solicitudes como JSON
@@ -101,8 +111,6 @@ server.use("/", postSize);
 server.use("/", getSize);
 server.use("/", detail);
 
-///
-
 server.use("/", getGender);
 server.use("/", getCategory);
 
@@ -129,6 +137,16 @@ server.use("/", getAllOrders);
 server.use("/", getUserOrder);
 server.use("/", paymentOrder);
 server.use("/", getOrderById);
+
+//Rutas Visit:
+server.use("/", postVisit);
+server.use("/", getVisit);
+
+//Rutas para ofertas
+server.use("/", postOffer);
+server.use("/", getOffer);
+server.use("/", deleteOffer);
+server.use("/", updateOffer);
 
 server.use("/", updatePassword);
 server.use("/", updatePassword);
