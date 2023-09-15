@@ -14,7 +14,11 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
+
     }
   },
   {
@@ -33,7 +37,93 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
+    },
+  },
+
+
+  {
+    name: "Riñonera cuero Mujer",
+    gender: "Mujer",
+    category: "Accesorio",
+    mainMaterial: "Cuero",
+    images: [    
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRi%C3%B1onera%20mujer.PNG?alt=media&token=4c2ad66f-e558-47a2-8551-9cc498d68357",
+    ],
+    price: 8000,    
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+ 
+  {
+    name: "Riñonera Mujer",
+    gender: "Mujer",
+    category: "Accesorio",
+    mainMaterial: "Algodon",
+    images: [    
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRi%C3%B1oneraMujER.PNG?alt=media&token=c640b318-ab89-4284-9645-6aba4933c55d",
+    ],
+    price: 10000,    
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Riñonera Mujer Simil",
+    gender: "Mujer",
+    category: "Accesorio",
+    mainMaterial: "Simil",
+    images: [    
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRi%C3%B1oneraMujerCuero.PNG?alt=media&token=6af73185-e4c5-4fd1-b434-e67f68d65e3e",
+    ],
+    price: 9000,    
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Cartera Beige",
+    gender: "Mujer",
+    category: "Accesorio",
+    mainMaterial: "Cuero",
+    images: [
+
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FCarteraMujer.PNG?alt=media&token=57b98fa9-f078-4e48-89ad-6fbecaaef2b4",
+    ],
+    price: 8000,
+    
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -51,7 +141,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
 
@@ -71,9 +164,55 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
+  {
+    name: "Pantalón nacional Hombre gris",
+    gender: "Hombre",
+    category: "Pantalón",
+    mainMaterial: "Jean",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FNuevas%2FPantaloGrisHombre.PNG?alt=media&token=066a619f-10bf-42b1-b72d-44db5bffdea3",
+      
+    ],
+    price: 12000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Pantalón nacional Hombre negro",
+    gender: "Hombre",
+    category: "Pantalón",
+    mainMaterial: "Jean",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FNuevas%2FJeanHombre.PNG?alt=media&token=b0534a22-81c6-4f5c-b45b-d8cec16265da",
+      
+    ],
+    price: 17000,
+
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
   {
     name: "Pantalón nacional Hombre beige",
     gender: "Hombre",
@@ -88,7 +227,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -107,9 +249,74 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
+
+
+  {
+    name: "Pantalón importado Mujer",
+    gender: "Mujer",
+    category: "Pantalón",
+    mainMaterial: "Algodón",
+    images: [     
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2Fpantalon%20mujer%20%200.png?alt=media&token=11ffaf95-399a-4e10-8bcf-eb70ea33dfba",
+    ],
+    price: 19000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Pantalón Mujer Negro",
+    gender: "Mujer",
+    category: "Pantalón",
+    mainMaterial: "Algodón",
+    images: [     
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2Fpantalon%20mujer%20%201.png?alt=media&token=c6977031-71d0-4c7a-982b-19f331c2aaa1",
+    ],
+    price: 20000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Pantalón Mujer Verde",
+    gender: "Mujer",
+    category: "Pantalón",
+    mainMaterial: "Algodón",
+    images: [     
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2Fpantalon%20mujer%200.png?alt=media&token=d247f8c7-2912-47a0-a225-e3788057320a",
+    ],
+    price: 30000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
   {
     name: "Rompe vientos azul",
     gender: "Hombre",
@@ -125,9 +332,34 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
+  {
+    name: "Rompe vientos rojo",
+    gender: "Hombre",
+    category: "Campera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FHombre%2FNuevas%2FRompeVientosRojo.PNG?alt=media&token=1535438a-85d3-4653-b01e-3d4d2e185efe",
+      
+    ],
+    price: 12000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+
   {
     name: "Rompe vientos azul Oscuro",
     gender: "Hombre",
@@ -143,7 +375,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -161,7 +396,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -179,9 +417,97 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
+
+  {
+    name: "Rompe vientos verde",
+    gender: "Mujer",
+    category: "Campera",
+    mainMaterial: "Algodón",
+    images: [  
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRompe%20vientos%20verde.PNG?alt=media&token=f80e8b39-d230-4c14-aaff-ef8ccc18047c",
+    ],
+    price: 15000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Rompe vientos Rosada",
+    gender: "Mujer",
+    category: "Campera",
+    mainMaterial: "Algodón",
+    images: [  
+       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRompevientos.PNG?alt=media&token=229909c2-8658-410d-b4d5-a285d61603ce",
+    ],
+    price: 15000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+
+  {
+    name: "Rompe vientos Blanca",
+    gender: "Mujer",
+    category: "Campera",
+    mainMaterial: "Algodón",
+    images: [  
+       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRompevientos.PNG?alt=media&token=229909c2-8658-410d-b4d5-a285d61603ce",
+    ],
+    price: 12000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+  
+  {
+    name: "Rompe vientos Morada",
+    gender: "Mujer",
+    category: "Campera",
+    mainMaterial: "Algodón",
+    images: [  
+       "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRompevientosmorada.PNG?alt=media&token=7f8a58ee-2913-440b-887d-3b2a20f7943c",
+    ],
+    price: 14000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+
+
+
   {
     name: "Jardinero jean",
     gender: "Mujer",
@@ -214,9 +540,481 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
+  {
+    name: "Buzo Azul",
+    gender: "Mujer",
+    category: "Buzo",
+    mainMaterial: "Algodón",
+    images: [     
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2F2326002093.jpg?alt=media&token=1686bc42-dcdf-4ee1-bc9b-102f037d5bbc",
+    ],
+    price: 20000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+  
+  {
+    name: "Buzo Negro",
+    gender: "Mujer",
+    category: "Buzo",
+    mainMaterial: "Algodón",
+    images: [     
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FBuzonegromujer.PNG?alt=media&token=1be5dcdc-956b-4148-9f02-42bc831f9bea",
+    ],
+    price: 20000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Buzo Rojo",
+    gender: "Mujer",
+    category: "Buzo",
+    mainMaterial: "Algodón",
+    images: [     
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FCamperaRojaMujer.PNG?alt=media&token=2919eea5-1c1f-43e7-83e8-fcd00b07d68a",
+    ],
+    price: 20000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Buzo Negro",
+    gender: "Mujer",
+    category: "Buzo",
+    mainMaterial: "Algodón",
+    images: [     
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FBuzonegromujer.PNG?alt=media&token=1be5dcdc-956b-4148-9f02-42bc831f9bea",
+    ],
+    price: 20000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Campera Azul",
+    gender: "Mujer",
+    category: "Campera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FCamperaAzul.PNG?alt=media&token=ad422c41-0423-4db3-bdbc-f087be76a248",
+  
+    ],
+    price: 16000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Campera Negra",
+    gender: "Mujer",
+    category: "Campera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FCamperaNegra.PNG?alt=media&token=5936d9e8-c6f3-474b-a3f9-b85e992c2561",
+  
+    ],
+    price: 16000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Campera Rosada",
+    gender: "Mujer",
+    category: "Campera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FCamperaRosada.PNG?alt=media&token=20cfb131-a41f-4303-b12e-7e68b10151ea",
+  
+    ],
+    price: 16000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Campera Jean",
+    gender: "Mujer",
+    category: "Campera",
+    mainMaterial: "Jean",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FChaquetaMujerJean.PNG?alt=media&token=b17901fc-5cae-4027-9971-9caccf19b401",
+  
+    ],
+    price: 16000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Azul",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraAzulcielo.PNG?alt=media&token=8340d52c-66fe-4130-9537-2e88d11f8ff2",
+    ],
+    price: 10500,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Blanca",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraBlancaMujer.PNG?alt=media&token=5e1d4c02-0d19-4c8c-b612-ad430a937fc2",
+    ],
+    price: 12500,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Gamer",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraGamerMujer.PNG?alt=media&token=63d6dc9d-8ac4-42cb-a411-4ce50c199e94",
+    ],
+    price: 12500,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Sexy Gris",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraMujer.PNG?alt=media&token=19af7b9f-92ea-4633-8ce7-2a67537e65fe",
+    ],
+    price: 12500,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Blanca",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraMujerBlanca2.PNG?alt=media&token=a258e1d4-0e9e-46c7-8052-8c2aa7f9ce48",
+    ],
+    price: 10000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Estampada",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraMujerEstamapados.PNG?alt=media&token=73124f4d-bd28-4872-b65e-501b5b60ba4e",
+    ],
+    price: 10000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  
+  {
+    name: "Remera Estampada",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraMujerEstampado.PNG?alt=media&token=e63c5aaa-26e8-4a96-9cf2-31b6de46bf22",
+    ],
+    price: 14000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Estampada",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraMujerEstampado2.PNG?alt=media&token=e68bc2b8-805c-47b6-9ae2-b8aeb28909f6",
+    ],
+    price: 12000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Gris",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraMujerGris.PNG?alt=media&token=943823da-cb40-4290-bfed-072b32ab73da",
+    ],
+    price: 12000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Negra",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraMujerNegra.PNG?alt=media&token=a962c415-d15b-4da7-8730-441f9dbdcf7d",
+    ],
+    price: 18000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Blanca",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraMujerblanca.PNG?alt=media&token=357f31d2-f0d1-4bba-ab47-856c4459cb02",
+    ],
+    price: 18000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Roja",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraRoja.PNG?alt=media&token=cd128ed6-ed5a-4d1e-bed0-acd0fec107f5",
+    ],
+    price: 18000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+  {
+    name: "Remera Verde",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2FRemeraVerdeMujer.PNG?alt=media&token=d3c857c7-42a1-4fdf-af82-cdf9bc3db058",
+    ],
+    price: 18000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+
+  {
+    name: "Remera Blanca",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2Ffotor-ai-202309151054.jpg?alt=media&token=8ddef4a0-6461-4026-8491-b980dafae31f",
+    ],
+    price: 18000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+
+  {
+    name: "Remera Blanca",
+    gender: "Mujer",
+    category: "Remera",
+    mainMaterial: "Algodón",
+    images: [
+      "https://firebasestorage.googleapis.com/v0/b/fir-autenticacion-95e3f.appspot.com/o/Imagenes%2FAdult_s%2FDama%2FNuevas%2Ffotor-ai-2023091510557.jpg?alt=media&token=65fea931-7650-4fb1-9e07-daaad21779d9",
+    ],
+    price: 17000,
+    description: "Descripción del nuevo producto",
+    sizes: {
+      XS: 10,
+      S: 15,
+      M: 2,
+      L: 2,
+      XL: 50,
+      XXL: 2,
+    },
+  },
+
+
+
   {
     name: "Calza ",
     gender: "Nena",
@@ -235,7 +1033,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -253,7 +1054,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -272,7 +1076,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -290,7 +1097,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -307,7 +1117,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -325,7 +1138,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -348,7 +1164,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -364,7 +1183,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -382,7 +1204,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -399,7 +1224,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -416,7 +1244,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -432,7 +1263,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
   {
@@ -448,7 +1282,10 @@ const products = [
     sizes: {
       XS: 10,
       S: 15,
+      M: 2,
+      L: 2,
       XL: 50,
+      XXL: 2,
     },
   },
 ];
