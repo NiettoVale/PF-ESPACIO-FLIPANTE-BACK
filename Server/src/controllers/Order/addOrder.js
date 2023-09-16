@@ -2,7 +2,7 @@ const { Order } = require("../../DataBase");
 
 const addOrder = async (req, res) => {
   try {
-    const { userId, productId, sizeId, quantity, totalPrice } = req.body;
+    const { userId, productId, sizeId, quantity, totalPrice, category } = req.body;
     if (!userId) {
       return res.status(400).json({ message: "Falta el ID de usuario." });
     }
@@ -22,6 +22,7 @@ const addOrder = async (req, res) => {
       quantity,
       totalPrice,
       purchaseDate,
+      category,
       payment: false, // Establece el valor de payment en false
     });
     return res.status(201).json({ message: "Orden creada con éxito." });

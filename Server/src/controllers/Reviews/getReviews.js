@@ -25,9 +25,10 @@ const getReviews = async (req, res) => {
             id: review.id,
             rating: review.rating,
             comment: review.comment,
-            deleted: review.deletd,
+            deleted: review.deleted,
             User: review.User.name,
             Product: review.Product.name,
+            PurchaseDate: review.purchaseDate,
           };
         })
       );

@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: false, // Por defecto, la compra no está confirmada
       },
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      }
     },
     { timestamps: false }
   );

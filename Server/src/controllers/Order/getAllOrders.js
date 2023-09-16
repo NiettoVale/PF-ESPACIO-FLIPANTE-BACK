@@ -22,6 +22,8 @@ const getAllOrders = async (req, res) => {
           id: order.id,
           userName: user ? user.name : null, // Nombre del usuario
           productName: product ? product.name : null, // Nombre del producto
+          category: product ? order.category : null,
+          totalPrice: product? order.totalPrice : null
           // quantity: order.quantity,
           // totalPrice: order.totalPrice,
           // purchaseDate: order.purchaseDate,
