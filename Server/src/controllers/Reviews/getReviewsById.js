@@ -3,6 +3,7 @@ const { Review, Product } = require("../../DataBase");
 const getReviewsByUserId = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("ID", id);
     const myReviews = await Review.findAll({
       where: { UserId: id },
       include: [
@@ -20,7 +21,6 @@ const getReviewsByUserId = async (req, res) => {
             id: review.id,
             rating: review.rating,
             comment: review.comment,
-            User: review.UserId, // Puedes mantener el ID del usuario si lo deseas
             Product: review.Product.name,
           };
         })
