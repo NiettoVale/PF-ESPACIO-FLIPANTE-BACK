@@ -16,8 +16,10 @@ const getFavorites = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado." });
     }
 
-    // Filtrar los productos favoritos por la propiedad 'delete' igual a false
-    const favoriteProducts = user.Products.filter((product) => !product.delete);
+    // Filtrar los productos favoritos por la propiedad 'deleted' igual a false
+    const favoriteProducts = user.Products.filter(
+      (product) => !product.deleted
+    );
 
     // Ordenar los productos favoritos por ID de forma ascendente
     const favorites = favoriteProducts.sort((a, b) => a.id - b.id);

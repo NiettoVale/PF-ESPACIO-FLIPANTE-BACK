@@ -1,10 +1,10 @@
 const { User } = require("../../DataBase");
 const arrayUsers = require("./arrayUsers");
-const { encrypt } = require("./handlers/handleCrypt"); // Asegúrate de importar tu handler
+const { encrypt } = require("./handlers/handleCrypt");
+const { validateEmail, validatePassword } = require("./validators"); // Asegúrate de tener un módulo para validar el email y la contraseña
 
 const registerUser = async (req, res) => {
   try {
-    // Verificar si la base de datos de usuarios está vacía
     const userCount = await User.count();
     if (userCount === 0 && arrayUsers.length > 0) {
       const bulkCreateData = arrayUsers.map(async (user) => {
@@ -25,13 +25,36 @@ const registerUser = async (req, res) => {
       return res
         .status(200)
         .json({ message: "Usuarios ficticios cargados con éxito" });
-    } else {
+    }
+
+    // Verificar si la base de datos de usuarios está vacía
+    else {
       const { name, email, password, isSuperuser } = req.body;
 
-      if (!name || !email || !password) {
+      // Validar el nombre
+      if (!name || name.length < 6 || name.length > 25) {
         return res
           .status(400)
-          .json({ message: "Faltan datos en la solicitud" });
+          .json({ message: "El nombre debe tener entre 6 y 25 caracteres" });
+      }
+
+      // Validar el email
+      if (!validateEmail(email)) {
+        return res
+          .status(400)
+          .json({ message: "El correo electrónico no es válido" });
+      }
+
+      // Validar la contraseña
+      const validateP = validatePassword(password);
+      if (validateP.error) {
+        return res.status(400).json(validateP);
+      } else {
+        if (!validatePassword(password)) {
+          return res.status(400).json({
+            message: "La contraseña debe contener letras y números",
+          });
+        }
       }
 
       const existingUserByName = await User.findOne({ where: { name } });

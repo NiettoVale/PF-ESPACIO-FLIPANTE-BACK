@@ -14,6 +14,7 @@ const getUserByName = require("./routes/Users_Routes/getUserByName.routes");
 const registerGoogle = require("./routes/Users_Routes/registerGoogle.routes");
 const updatePassword = require("./routes/Users_Routes/changePassword.routes");
 const getUserDeleted = require("./routes/Users_Routes/getUsersDeleteded");
+const checkBannedStatus = require("./routes/Users_Routes/checkStatus.routes");
 
 // Rutas para las prendas:
 const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ruta para obtener información de prendas
@@ -84,6 +85,7 @@ server.use("/", register); // Ruta para registrar un usuario
 server.use("/", deleteUser); // Ruta para eliminar un usuario
 server.use("/", updataUser); // Ruta para actualizar información de usuario
 server.use("/", getUser); // Ruta para obtener información de usuario
+server.use("/", checkBannedStatus);
 server.use("/", getUserDeleted);
 server.use("/", getUserByName);
 server.use("/", registerGoogle); // Ruta para registrar un usuario
