@@ -9,18 +9,24 @@ const getFavorites = async (req, res) => {
     }
 
     const user = await User.findByPk(userId, {
-      include: [{ model: Product, through: "FavoriteItem" }],
+      include: [
+        {
+          model: Product,
+          through: {
+            where: {
+              deleteFav: false, // Filtrar por deleteFav en false
+            },
+          },
+        },
+      ],
     });
 
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado." });
     }
 
-    // Filtrar los productos favoritos por la propiedad 'delete' igual a false
-    const favoriteProducts = user.Products.filter((product) => !product.delete);
-
-    // Ordenar los productos favoritos por ID de forma ascendente
-    const favorites = favoriteProducts.sort((a, b) => a.id - b.id);
+    // La lista de productos favoritos ahora ya está filtrada por deleteFav en false
+    const favorites = user.Products;
     console.log(favorites);
 
     return res.status(200).json(favorites);

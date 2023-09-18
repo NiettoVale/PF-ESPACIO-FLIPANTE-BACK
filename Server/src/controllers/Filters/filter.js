@@ -5,7 +5,7 @@ const filter = async (req, res) => {
     const { name, size, price, gender, category } = req.body;
     const products = await Product.findAll({
       where: {
-        delete: false,
+        deleted: false,
       },
       include: [
         {

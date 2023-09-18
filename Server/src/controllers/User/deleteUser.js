@@ -5,7 +5,7 @@ const deleteUser = async (req, res) => {
     const { id } = req.params;
 
     await User.update(
-      { eliminado: true },
+      { deleted: true },
       {
         where: {
           id,

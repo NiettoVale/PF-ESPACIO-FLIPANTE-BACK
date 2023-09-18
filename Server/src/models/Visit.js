@@ -2,12 +2,12 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "FavoriteItem",
+    "Visit",
     {
-      deleteFav: {
-        type: DataTypes.BOOLEAN,
+      count: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: 0,
       },
     },
     { timestamps: false }

@@ -23,6 +23,16 @@ const postFavorites = async (req, res) => {
     // Crea un registro en la tabla FavoriteItem para establecer la relación
     await user.addProduct(product);
 
+    // Obtiene los productos favoritos del usuario y verifica si el producto ya existe en favoritos
+    const favoriteItems = await user.getProducts({
+      where: { id: productId },
+    });
+
+    if (favoriteItems && favoriteItems.length > 0) {
+      // Cambia deleteFav a false en el primer registro (puedes ajustarlo según tus necesidades)
+      await favoriteItems[0].FavoriteItem.update({ deleteFav: false });
+    }
+
     return res
       .status(200)
       .json({ message: "Producto marcado como favorito con éxito." });
