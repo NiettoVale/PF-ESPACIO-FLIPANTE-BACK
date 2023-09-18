@@ -17,7 +17,7 @@ const deleteAllOrder = async (req, res) => {
     });
 
     if (!ordersToDelete || ordersToDelete.length === 0) {
-      return res.status(404).json({
+      return res.status(200).json({
         message: "No se encontraron órdenes para eliminar.",
       });
     }
