@@ -16,9 +16,9 @@ const mercadoPago = async (req, res) => {
         },
       ],
       back_urls: {
-        success: "http://localhost:3000/userProfile",
-        failure: "http://localhost:3000/userProfile",
-        pending: "http://localhost:3000/userProfile",
+        success: "http://localhost:3000/orders",
+        failure: "http://localhost:3000/orders",
+        pending: "http://localhost:3000/orders",
       },
       auto_return: "approved",
     };
