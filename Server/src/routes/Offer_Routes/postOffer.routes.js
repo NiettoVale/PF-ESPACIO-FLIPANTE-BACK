@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const postVisit = require("../../controllers/Visit/postVisit");
+const postOffer = require("../../controllers/Offers/postOffer");
 
 // Ruta para marcar un producto como favorito por un usuario
-router.post("/visit", postVisit);
+router.post("/offer", postOffer);
 
 module.exports = router;
