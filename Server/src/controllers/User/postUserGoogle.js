@@ -25,11 +25,12 @@ const registerUserGoogle = async (req, res) => {
     }
 
     const hashPassword = await encrypt("admin");
-    await User.create({
+    const newUser = await User.create({
       name,
       email,
       password: hashPassword,
       imageProfile,
+      isGoogle: true, // Actualiza la propiedad isGoogle a true
     });
     return res.status(204).json();
   } catch (error) {

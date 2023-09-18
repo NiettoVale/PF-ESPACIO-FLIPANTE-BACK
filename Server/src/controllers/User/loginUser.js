@@ -15,7 +15,7 @@ const loginUser = async (req, res) => {
     }
 
     if (!user) {
-      return res.status(404).json({ error: "Usuario no encontrado" });
+      return res.status(404).json({ error: "Usuario no encontrados" });
     }
 
     if (user.deleted === true) {
