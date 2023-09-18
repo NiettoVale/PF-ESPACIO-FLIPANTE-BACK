@@ -15,6 +15,7 @@ const registerGoogle = require("./routes/Users_Routes/registerGoogle.routes");
 const updatePassword = require("./routes/Users_Routes/changePassword.routes");
 const getUserDeleted = require("./routes/Users_Routes/getUsersDeleteded");
 const checkBannedStatus = require("./routes/Users_Routes/checkStatus.routes");
+const ModifyPassword = require("./routes/Users_Routes/modifyPassword.routes");
 
 // Rutas para las prendas:
 const getProducts = require("./routes/Products_Routes/getProduct.routes"); // Ruta para obtener información de prendas
@@ -154,4 +155,6 @@ server.use("/", updateOffer);
 
 server.use("/", updatePassword);
 server.use("/", updatePassword);
+server.use("/", ModifyPassword);
+
 module.exports = server; // Exportar el servidor configurado

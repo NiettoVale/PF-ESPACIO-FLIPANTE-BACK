@@ -50,10 +50,16 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue: false,
       },
+
       deleted: {
         // Agrega este campo
         type: DataTypes.BOOLEAN,
         defaultValue: false, // Por defecto, no está eliminado
+      },
+      isGoogle: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
       },
       purchaseDate: {
         type: DataTypes.DATE, // Agrega un campo para la fecha y hora de la compra
