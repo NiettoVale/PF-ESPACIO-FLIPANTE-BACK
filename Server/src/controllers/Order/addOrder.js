@@ -2,7 +2,8 @@ const { Order } = require("../../DataBase");
 
 const addOrder = async (req, res) => {
   try {
-    const { userId, productId, sizeId, quantity, totalPrice } = req.body;
+    const { userId, productId, sizeId, quantity, totalPrice, category } =
+      req.body;
     if (!userId) {
       return res.status(400).json({ message: "Falta el ID de usuario." });
     }
@@ -18,6 +19,7 @@ const addOrder = async (req, res) => {
     await Order.create({
       userId,
       productId,
+      category,
       sizeId,
       quantity,
       totalPrice,
@@ -27,7 +29,7 @@ const addOrder = async (req, res) => {
     return res.status(201).json({ message: "Orden creada con éxito." });
   } catch (error) {
     console.error("Error en el controlador de addOrder:", error);
-    return res.status(500).json({ message: "Error interno del servidor." });
+    return res.status(500).json({ error: error.message });
   }
 };
 

@@ -16,16 +16,17 @@ const getAllOrders = async (req, res) => {
         const product = await Product.findByPk(order.productId, {
           attributes: ["name"], // Selecciona el nombre del producto
         });
-
+        console.log(order);
         // Combina la información de la orden, usuario y producto
         return {
           id: order.id,
           userName: user ? user.name : null, // Nombre del usuario
           productName: product ? product.name : null, // Nombre del producto
-          // quantity: order.quantity,
-          // totalPrice: order.totalPrice,
-          // purchaseDate: order.purchaseDate,
-          // payment: order.payment,
+          quantity: order.quantity,
+          category: order.category,
+          totalPrice: order.totalPrice,
+          purchaseDate: order.purchaseDate,
+          payment: order.payment,
         };
       })
     );
