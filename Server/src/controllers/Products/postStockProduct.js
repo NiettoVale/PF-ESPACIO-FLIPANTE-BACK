@@ -2,11 +2,10 @@ const { Product, Size, Stock } = require("../../DataBase");
 
 const postStockProduct = async (req, res) => {
   const { ProductId, SizeId, change } = req.params;
-  console.log(SizeId);
   try {
     // Buscar el registro de Stock correspondiente al productId y sizeId
     const stockRecord = await Stock.findOne({ where: { ProductId, SizeId } });
-
+    console.log(ProductId, SizeId);
     if (!stockRecord) {
       return res
         .status(404)

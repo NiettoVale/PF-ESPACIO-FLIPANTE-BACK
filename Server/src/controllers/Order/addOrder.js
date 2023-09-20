@@ -29,7 +29,7 @@ const addOrder = async (req, res) => {
     return res.status(201).json({ message: "Orden creada con éxito." });
   } catch (error) {
     console.error("Error en el controlador de addOrder:", error);
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json("pepe");
   }
 };
 
