@@ -2,7 +2,8 @@ const { Order } = require("../../DataBase");
 
 const paymentOrder = async (req, res) => {
   try {
-    const { userId, productId, sizeId, quantity, totalPrice } = req.body;
+    const { userId, productId, sizeId, quantity, totalPrice, category } =
+      req.body;
 
     // Busca la orden que coincida con los datos proporcionados
     const order = await Order.findOne({
@@ -12,6 +13,7 @@ const paymentOrder = async (req, res) => {
         sizeId,
         quantity,
         totalPrice,
+        category,
       },
     });
 
