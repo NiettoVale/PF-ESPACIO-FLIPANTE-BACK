@@ -31,9 +31,6 @@ const getOrderById = async (req, res) => {
       payment: orderFound.payment,
     };
 
-    console.log(orderFound);
-    console.log(orderWithUserInfo);
-
     return res.status(200).json(orderWithUserInfo);
   } catch (error) {
     console.error("Error al obtener la orden por ID:", error);

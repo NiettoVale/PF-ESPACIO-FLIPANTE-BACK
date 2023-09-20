@@ -1,4 +1,5 @@
 const { User } = require("../../DataBase");
+
 const getUsers = async (_req, res) => {
   try {
     const users = await User.findAll({
@@ -6,9 +7,12 @@ const getUsers = async (_req, res) => {
         deleted: false,
       },
       order: [["id", "ASC"]],
+      // attributes: ["name"], // Aquí especifica los campos que deseas incluir
     });
 
-    return res.status(200).json(users);
+    const sliceUsers = users.slice(0, 51);
+
+    return res.status(200).json(sliceUsers);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
