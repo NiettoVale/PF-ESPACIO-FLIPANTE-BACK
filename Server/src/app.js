@@ -26,6 +26,7 @@ const postSize = require("./routes/Products_Routes/Size/postSize.routes");
 const getSize = require("./routes/Products_Routes/Size/getSize.routes");
 const getProductByPrice = require("./routes/Products_Routes/getProductByPrice.routes");
 const getProdcutsDeleted = require("./routes/Products_Routes/getProductsDeleted.routes");
+const postStockProduct = require("./routes/Products_Routes/postStockProduct.routes");
 
 // Rutas para Detalles y Filtros
 const getGender = require("./routes/Products_Routes/getGender.routes");
@@ -100,6 +101,7 @@ server.use("/", postProducts); // Ruta para crear una nueva prenda
 server.use("/", deleteProducts); // Ruta para eliminar una prenda
 server.use("/", updateProducts); // Ruta para actualizar información de prendas
 server.use("/", getProductByPrice);
+server.use("/", postStockProduct);
 
 server.use("/", mercadoPago); //Ruta para Mercado pago
 
