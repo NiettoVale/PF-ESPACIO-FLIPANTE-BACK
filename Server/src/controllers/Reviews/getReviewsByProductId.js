@@ -4,7 +4,7 @@ const getReviewsByProductId = async (req, res) => {
   try {
     const { id } = req.params;
     const myReviews = await Review.findAll({
-      where: { ProductId: id },
+      where: { ProductId: id, deleted: false },
       include: [
         {
           model: User,
