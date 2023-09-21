@@ -1,4 +1,4 @@
-const arrayUser = [
+[
   {
     first_name: "Gabbi",
     email: "gcockle0@usnews.com",
@@ -122,5 +122,3 @@ const arrayUser = [
     password: "hQ0*Fpn6w)Ahq\\+.",
   },
 ];
-
-module.exports = arrayUser;
